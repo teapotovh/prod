@@ -43,8 +43,8 @@ spec:
             - --source=ingress
             - --source=service
             - --provider=ovh
-            - --domain-filter=dev.teapot.ovh
-            - --txt-owner-id=dev
+            - --domain-filter=prod.teapot.ovh
+            - --txt-owner-id=prod
             - --managed-record-types=A
             - --managed-record-types=CNAME
             - --managed-record-types=MX
