@@ -4,6 +4,6 @@ metadata:
   name: github
 spec:
   type: github
-  address: https://api.github.com
+  address: https://github.com/teapotovh/prod
   secretRef:
     name: github-token
