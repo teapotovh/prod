@@ -1,0 +1,15 @@
+namespace: ingress-nginx
+namePrefix: ingress-nginx-
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+
+resources:
+- rbac
+- common
+- manager
