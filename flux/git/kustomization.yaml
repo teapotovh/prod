@@ -1,0 +1,7 @@
+namespace: flux
+
+resources:
+- gitrepository.yaml
+- secret.yaml
+- alert.yaml
+- provider.yaml

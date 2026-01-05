@@ -1,0 +1,4 @@
+namespace: flux
+
+resources:
+- sealed-secrets.yaml
