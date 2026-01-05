@@ -3,3 +3,5 @@ namespace: flux
 resources:
 - namespace.yaml
 - gitrepository.yaml
+
+- sealed-secrets.yaml
