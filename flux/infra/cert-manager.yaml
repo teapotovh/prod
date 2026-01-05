@@ -17,6 +17,8 @@ metadata:
 spec:
   interval: 5m
   path: infra/cert-manager/issuers
+  dependsOn:
+    - name: cert-manager
   prune: true
   sourceRef:
     kind: GitRepository

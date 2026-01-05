@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controller
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
+      automountServiceAccountToken: true
+      serviceAccountName: serviceaccount
+      securityContext:
+        fsGroup: 65534
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: external-dns
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 65532
+            runAsNonRoot: true
+            runAsUser: 65532
+          image: registry.k8s.io/external-dns/external-dns:v0.19.0
+          imagePullPolicy: IfNotPresent
+          args:
+            - --log-format=text
+            - --log-level=debug
+            - --interval=1m
+            - --source=crd
+            - --source=ingress
+            - --source=service
+            - --provider=ovh
+            - --domain-filter=dev.teapot.ovh
+            - --txt-owner-id=dev
+            - --managed-record-types=A
+            - --managed-record-types=CNAME
+            - --managed-record-types=MX
+            - --managed-record-types=TXT
+          env:
+          - name: OVH_APPLICATION_KEY
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-ovh-credentials
+                key: applicationKey
+          - name: OVH_APPLICATION_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-ovh-credentials
+                key: applicationSecret
+          - name: OVH_CONSUMER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-ovh-credentials
+                key: consumerKey
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 7979
+          livenessProbe:
+            failureThreshold: 2
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5

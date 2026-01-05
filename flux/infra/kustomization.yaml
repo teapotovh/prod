@@ -2,3 +2,5 @@ namespace: flux
 
 resources:
 - sealed-secrets.yaml
+- cert-manager.yaml
+- external-dns.yaml
