@@ -5,3 +5,7 @@ resources:
 - cert-manager.yaml
 - external-dns.yaml
 - ingress-nginx.yaml
+- local-path-provisioner.yaml
+- metrics-server.yaml
+- descheduler.yaml
+- reloader.yaml
