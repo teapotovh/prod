@@ -9,6 +9,14 @@ data:
             {
                     "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
                     "paths":["/opt/local-path-provisioner"]
+            },
+            {
+                    "node":"kube02.prod.infra.teapot.ovh",
+                    "paths":["/mnt/disk01"]
+            },
+            {
+                    "node":"kube03.prod.infra.teapot.ovh",
+                    "paths":["/mnt/disk01"]
             }
         ]
     }
