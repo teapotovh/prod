@@ -5,8 +5,10 @@ labels:
 - includeSelectors: true
   pairs:
     app: descheduler
+    app.kubernetes.io/instance: descheduler
     app.kubernetes.io/name: descheduler
     app.kubernetes.io/part-of: descheduler
+    app.kubernetes.io/managed-by: kustomize
 
 resources:
 - rbac.yaml

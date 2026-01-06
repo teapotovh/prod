@@ -7,6 +7,7 @@ labels:
     app.kubernetes.io/instance: metrics-server
     app.kubernetes.io/name: metrics-server
     app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/managed-by: kustomize
 
 resources:
 - serviceaccount.yaml
