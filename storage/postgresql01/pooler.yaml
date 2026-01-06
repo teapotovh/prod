@@ -5,13 +5,17 @@ metadata:
 spec:
   instances: 3
   cluster:
-    name: postgresql01--cluster
+    name: postgresql01-cluster
   type: rw
   pgbouncer:
     poolMode: session
     parameters:
       max_client_conn: "100"
       default_pool_size: "10"
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
   serviceTemplate:
     spec:
       internalTrafficPolicy: Local
