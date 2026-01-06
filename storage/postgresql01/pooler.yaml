@@ -12,10 +12,17 @@ spec:
     parameters:
       max_client_conn: "100"
       default_pool_size: "10"
-  affinity:
-    enablePodAntiAffinity: true
-    topologyKey: kubernetes.io/hostname
-    podAntiAffinityType: required
+  template:
+    spec:
+      containers:
+      - name: pgbouncer
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                cnpg.io/pooler: postgresql01-pooler
+            topologyKey: kubernetes.io/hostname
   serviceTemplate:
     spec:
       internalTrafficPolicy: Local
