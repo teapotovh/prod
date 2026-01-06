@@ -3,9 +3,15 @@ kind: Deployment
 metadata:
   name: controller
 spec:
-  replicas: 3
+  replicas: 1
   template:
     spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
       serviceAccountName: serviceaccount
       enableServiceLinks: false
       securityContext:
