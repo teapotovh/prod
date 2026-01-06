@@ -12,6 +12,7 @@ spec:
         effect: NoSchedule
       nodeSelector:
         node-role.kubernetes.io/control-plane: ""
+        kubernetes.io/os: linux
       serviceAccountName: serviceaccount
       enableServiceLinks: false
       securityContext:
@@ -59,5 +60,3 @@ spec:
             timeoutSeconds: 15
             successThreshold: 1
             failureThreshold: 8
-      nodeSelector:
-        kubernetes.io/os: linux

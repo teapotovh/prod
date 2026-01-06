@@ -13,6 +13,7 @@ spec:
         effect: NoSchedule
       nodeSelector:
         node-role.kubernetes.io/control-plane: ""
+        kubernetes.io/os: linux
       serviceAccountName: cainjector
       enableServiceLinks: false
       securityContext:
@@ -38,5 +39,3 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-      nodeSelector:
-        kubernetes.io/os: linux

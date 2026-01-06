@@ -12,6 +12,7 @@ spec:
         effect: NoSchedule
       nodeSelector:
         node-role.kubernetes.io/control-plane: ""
+        kubernetes.io/os: linux
       serviceAccountName: webhook
       enableServiceLinks: false
       securityContext:
@@ -70,5 +71,3 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-      nodeSelector:
-        kubernetes.io/os: linux
