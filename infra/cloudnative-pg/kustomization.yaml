@@ -1,0 +1,26 @@
+namespace: cnpg-system
+namePrefix: cnpg-
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: cnpg
+    app.kubernetes.io/instance: cloudnative-pg
+    app.kubernetes.io/name: cloudnative-pg
+    app.kubernetes.io/part-of: cloudnative-pg
+    app.kubernetes.io/managed-by: kustomize
+
+resources:
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_clusters.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_backups.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_scheduledbackups.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_poolers.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_imagecatalogs.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_clusterimagecatalogs.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_databases.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_publications.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/tags/v1.26.0/config/crdbases/postgresql.cnpg.io_subscriptions.yaml
+
+- rbac
+- common
+- manager

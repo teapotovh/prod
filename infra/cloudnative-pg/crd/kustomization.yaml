@@ -1,0 +1,10 @@
+resources:
+- backup.yaml
+- clusterimagecatalog.yaml
+- cluster.yaml
+- database.yaml
+- imagecatalog.yaml
+- pooler.yaml
+- publication.yaml
+- scheduledbackup.yaml
+- subscription.yaml
