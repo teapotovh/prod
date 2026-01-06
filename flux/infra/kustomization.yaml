@@ -9,3 +9,4 @@ resources:
 - metrics-server.yaml
 - descheduler.yaml
 - reloader.yaml
+- cloudnative-pg.yaml
