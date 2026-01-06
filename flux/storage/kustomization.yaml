@@ -1,0 +1,6 @@
+namespace: flux
+
+resources:
+- storage.yaml
+
+- postgresql01.yaml
