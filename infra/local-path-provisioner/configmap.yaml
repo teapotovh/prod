@@ -17,6 +17,10 @@ data:
             {
                     "node":"kube03.prod.infra.teapot.ovh",
                     "paths":["/mnt/disk01"]
+            },
+            {
+                    "node":"kube04.prod.infra.teapot.ovh",
+                    "paths":["/mnt/disk01"]
             }
         ]
     }
