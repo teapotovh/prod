@@ -10,3 +10,4 @@ resources:
 - descheduler.yaml
 - reloader.yaml
 - cloudnative-pg.yaml
+- prometheus.yaml
