@@ -12,6 +12,7 @@ labels:
 
 resources:
 - https://github.com/cloudnative-pg/cloudnative-pg/raw/refs/tags/v1.26.0/config/crd/bases/postgresql.cnpg.io_clusters.yaml
+- https://github.com/cloudnative-pg/cloudnative-pg/raw/refs/tags/v1.26.0/config/crd/bases/postgresql.cnpg.io_backups.yaml
 - https://github.com/cloudnative-pg/cloudnative-pg/raw/refs/tags/v1.26.0/config/crd/bases/postgresql.cnpg.io_scheduledbackups.yaml
 - https://github.com/cloudnative-pg/cloudnative-pg/raw/refs/tags/v1.26.0/config/crd/bases/postgresql.cnpg.io_poolers.yaml
 - https://github.com/cloudnative-pg/cloudnative-pg/raw/refs/tags/v1.26.0/config/crd/bases/postgresql.cnpg.io_imagecatalogs.yaml
