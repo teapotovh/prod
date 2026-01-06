@@ -1,0 +1,47 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster
+spec:
+  instances: 3
+  storage:
+    pvcTemplate:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 32Gi
+      storageClassName: local-path-storageclass
+      volumeMode: Filesystem
+  managed:
+    roles:
+    - name: bottin
+      ensure: present
+      comment: Access user for the bottin db
+      login: true
+      superuser: false
+      inRoles:
+        - pg_monitor
+        - pg_signal_backend
+      passwordSecret:
+        name: postgresql01-user-bottin
+    - name: mail
+      ensure: present
+      comment: Access user for the mail db
+      login: true
+      superuser: false
+      inRoles:
+        - pg_monitor
+        - pg_signal_backend
+      passwordSecret:
+        name: postgresql01-user-mail
+    - name: vaultwarden
+      ensure: present
+      comment: Access user for the vaultwarden db
+      login: true
+      superuser: false
+      inRoles:
+        - pg_monitor
+        - pg_signal_backend
+      passwordSecret:
+        name: postgresql01-user-vaultwarden
