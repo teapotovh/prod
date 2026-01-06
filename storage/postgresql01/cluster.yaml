@@ -13,6 +13,10 @@ spec:
           storage: 32Gi
       storageClassName: local-path-storageclass
       volumeMode: Filesystem
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
   managed:
     roles:
     - name: bottin
