@@ -6,6 +6,12 @@ spec:
   replicas: 3
   template:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
       containers:
         - name: bottin
           image: ghcr.io/teapotovh/bottind:v0.0.2
