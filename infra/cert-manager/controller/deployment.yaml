@@ -42,6 +42,13 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
           env:
           - name: POD_NAMESPACE
             valueFrom:
@@ -60,10 +67,3 @@ spec:
             timeoutSeconds: 15
             successThreshold: 1
             failureThreshold: 8
-        resources:
-          requests:
-            cpu: 10m
-            memory: 32Mi
-          limits:
-            cpu: 100m
-            memory: 128Mi
