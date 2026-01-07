@@ -13,12 +13,12 @@ spec:
     recordTTL: 300
     recordType: TXT
     targets:
-    - "v=spf1 a ra=root@teapot.ovh -all"
+    - "v=spf1 a -all"
   - dnsName: sendmail.teapot.ovh
     recordTTL: 300
     recordType: TXT
     targets:
-    - "v=spf1 mx ra=root@teapot.ovh -all"
+    - "v=spf1 mx -all"
     - "v=DMARC1; p=reject; rua=mailto:root@teapot.ovh; ruf=mailto:root@teapot.ovh; fo=1:d:s; adkim=r; aspf=r"
   - dnsName: 02012026._domainkey.sendmail.teapot.ovh
     recordTTL: 300
