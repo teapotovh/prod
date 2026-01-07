@@ -13,14 +13,14 @@ spec:
             image: vividboarder/vaultwarden_ldap:2.2
             env:
             - name: APP_VAULTWARDEN_URL
-              value: "http://apps-vaultwarden-server.apps"
+              value: "http://vaultwarden-server"
             - name: APP_VAULTWARDEN_ADMIN_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: apps-vaultwarden-admin
+                  name: vaultwarden-admin
                   key: token
             - name: APP_LDAP_HOST
-              value: "apps-bottin-server"
+              value: "bottin-server.storage"
             - name: APP_LDAP_SCHEME
               value: "ldap"
             - name: APP_LDAP_SSL
@@ -30,12 +30,14 @@ spec:
             - name: APP_LDAP_BIND_DN
               valueFrom:
                 secretKeyRef:
-                  name: apps-bottin-admin
+                  namespace: storage
+                  name: bottin-admin
                   key: username
             - name: APP_LDAP_BIND_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: apps-bottin-admin
+                  namespace: storage
+                  name: bottin-admin
                   key: password
             - name: APP_LDAP_SEARCH_BASE_DN
               value: "ou=users,dc=teapot,dc=ovh"

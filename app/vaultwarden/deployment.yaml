@@ -27,29 +27,31 @@ spec:
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: apps-pg-small-user-vaultwarden
+                  namespace: storage
+                  name: postgresql01-user-vaultwarden
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: apps-pg-small-user-vaultwarden
+                  namespace: storage
+                  name: postgresql01-user-vaultwarden
                   key: password
             - name: DATABASE_URL
-              value: postgresql://$(DB_USERNAME):$(DB_PASSWORD)@apps-pg-small-pooler/vaultwarden
+              value: postgresql://$(DB_USERNAME):$(DB_PASSWORD)@postresql01-pooler/vaultwarden
             - name: PUSH_INSTALLATION_ID
               valueFrom:
                 secretKeyRef:
-                  name: apps-vaultwarden-relay
+                  name: vaultwarden-relay
                   key: id
             - name: PUSH_INSTALLATION_KEY
               valueFrom:
                 secretKeyRef:
-                  name: apps-vaultwarden-relay
+                  name: vaultwarden-relay
                   key: key
             - name: ADMIN_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: apps-vaultwarden-admin
+                  name: vaultwarden-admin
                   key: token
           livenessProbe:
             httpGet:
@@ -66,7 +68,7 @@ spec:
                 path: .env
         - name: rsa-key
           secret:
-            secretName: apps-vaultwarden-rsa-key
+            secretName: vaultwarden-rsa-key
             defaultMode: 256
         - name: tmp
           emptyDir: {}

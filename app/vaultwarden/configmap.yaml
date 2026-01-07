@@ -411,7 +411,7 @@ data:
     ## Mail specific settings, set SMTP_FROM and either SMTP_HOST or USE_SENDMAIL to enable the mail service.
     ## To make sure the email links are pointing to the correct host, set the DOMAIN variable.
     ## Note: if SMTP_USERNAME is specified, SMTP_PASSWORD is mandatory
-    SMTP_HOST=apps-sendmail-postfix-server.apps
+    SMTP_HOST=sendmail-postfix-server
     SMTP_FROM=vaultwarden@sendmail.dev.teapot.ovh
     SMTP_FROM_NAME=Vaultwarden
     # SMTP_USERNAME=username
