@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+        - name: vaultwarden
+          image: ghcr.io/dani-garcia/vaultwarden:1.35.1-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: config
+              mountPath: /.env
+              subPath: .env
+              readOnly: true
+            - name: rsa-key
+              mountPath: /rsa_key.pem
+              subPath: rsa_key.pem
+              readOnly: true
+            - name: tmp
+              mountPath: /tmp
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: apps-pg-small-user-vaultwarden
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: apps-pg-small-user-vaultwarden
+                  key: password
+            - name: DATABASE_URL
+              value: postgresql://$(DB_USERNAME):$(DB_PASSWORD)@apps-pg-small-pooler/vaultwarden
+            - name: PUSH_INSTALLATION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: apps-vaultwarden-relay
+                  key: id
+            - name: PUSH_INSTALLATION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: apps-vaultwarden-relay
+                  key: key
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: apps-vaultwarden-admin
+                  key: token
+          livenessProbe:
+            httpGet:
+              path: /alive
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 30
+      volumes:
+        - name: config
+          configMap:
+            name: config
+            items:
+              - key: .env
+                path: .env
+        - name: rsa-key
+          secret:
+            secretName: apps-vaultwarden-rsa-key
+            defaultMode: 256
+        - name: tmp
+          emptyDir: {}

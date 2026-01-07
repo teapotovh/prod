@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: server
+spec:
+  internalTrafficPolicy: Local
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http

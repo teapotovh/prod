@@ -1,0 +1,5 @@
+namespace: storage
+namePrefix: vaultwarden-
+
+resources:
+- database.yaml
