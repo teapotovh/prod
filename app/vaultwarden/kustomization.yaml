@@ -1,4 +1,4 @@
-namespace: apps
+namespace: app
 namePrefix: vaultwarden-
 
 labels:

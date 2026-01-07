@@ -1,0 +1,6 @@
+namespace: flux
+
+resources:
+- app.yaml
+
+- sendmail.yaml

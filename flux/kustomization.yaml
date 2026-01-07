@@ -6,3 +6,4 @@ resources:
 - git
 - infra
 - storage
+- app
