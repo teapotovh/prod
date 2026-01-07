@@ -41,17 +41,17 @@ spec:
             - name: ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: apps-bottin-admin
+                  name: bottin-admin
                   key: password
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: apps-pg-small-user-bottin
+                  name: postgresql01-user-bottin
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: apps-pg-small-user-bottin
+                  name: postgresql01-user-bottin
                   key: password
           # livenessProbe:
           #   httpGet:
