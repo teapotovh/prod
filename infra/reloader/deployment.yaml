@@ -56,12 +56,12 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         resources:
-          limits:
-            cpu: "1"
-            memory: 512Mi
           requests:
             cpu: 10m
-            memory: 512Mi
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
         securityContext: {}
       securityContext:
         runAsNonRoot: true

@@ -70,6 +70,13 @@ spec:
             - name: http
               protocol: TCP
               containerPort: 7979
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
           livenessProbe:
             failureThreshold: 2
             httpGet:
