@@ -1,14 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: postgresql01
+  name: bottin
 spec:
   interval: 5m
-  path: storage/postgresql01
+  path: storage/bottin
   prune: true
   dependsOn:
-    - name: storage
-    - name: cloudnative-pg
+    - name: postgresql01
   sourceRef:
     kind: GitRepository
     name: prod
