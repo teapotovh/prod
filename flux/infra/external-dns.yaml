@@ -6,6 +6,8 @@ spec:
   interval: 5m
   path: infra/external-dns
   prune: true
+  dependsOn:
+    - name: sealed-secrets
   sourceRef:
     kind: GitRepository
     name: prod

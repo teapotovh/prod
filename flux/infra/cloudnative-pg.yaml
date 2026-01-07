@@ -6,6 +6,8 @@ spec:
   interval: 5m
   path: infra/cloudnative-pg
   prune: true
+  dependsOn:
+    - name: local-path-provisioner
   sourceRef:
     kind: GitRepository
     name: prod
