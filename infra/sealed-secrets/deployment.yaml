@@ -12,6 +12,10 @@ spec:
       maxUnavailable: 25%
     type: RollingUpdate
   template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port:   '8081'
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane
@@ -34,6 +38,8 @@ spec:
         ports:
         - containerPort: 8080
           name: http
+        - containerPort: 8081
+          name: metrics
         readinessProbe:
           httpGet:
             path: /healthz
