@@ -12,9 +12,9 @@ spec:
   tls:
   - secretName: teapot-dev-vault-tls
     hosts:
-    - vault.dev.teapot.ovh
+    - vault.prod.teapot.ovh
   rules:
-  - host: vault.dev.teapot.ovh
+  - host: vault.prod.teapot.ovh
     http:
       paths:
       - path: /

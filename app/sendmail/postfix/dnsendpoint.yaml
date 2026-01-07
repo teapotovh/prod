@@ -4,23 +4,23 @@ metadata:
   name: dnsendpoint
 spec:
   endpoints:
-  - dnsName: sendmail.dev.teapot.ovh
+  - dnsName: sendmail.teapot.ovh
     recordTTL: 300
     recordType: MX
     targets:
-    - "10 test.sendmail.dev.teapot.ovh."
-  - dnsName: mail.sendmail.dev.teapot.ovh
+    - "10 test.sendmail.teapot.ovh."
+  - dnsName: mail.sendmail.teapot.ovh
     recordTTL: 300
     recordType: TXT
     targets:
     - "v=spf1 a ra=root@teapot.ovh -all"
-  - dnsName: sendmail.dev.teapot.ovh
+  - dnsName: sendmail.teapot.ovh
     recordTTL: 300
     recordType: TXT
     targets:
     - "v=spf1 mx ra=root@teapot.ovh -all"
     - "v=DMARC1; p=reject; rua=mailto:root@teapot.ovh; ruf=mailto:root@teapot.ovh; fo=1:d:s; adkim=r; aspf=r"
-  - dnsName: 02012026._domainkey.sendmail.dev.teapot.ovh
+  - dnsName: 02012026._domainkey.sendmail.teapot.ovh
     recordTTL: 300
     recordType: TXT
     targets:

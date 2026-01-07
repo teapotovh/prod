@@ -121,7 +121,7 @@ data:
     ## - https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS
     ## - https://github.com/dani-garcia/vaultwarden/wiki/Proxy-examples
     ## For public server
-    DOMAIN=https://vault.dev.teapot.ovh
+    DOMAIN=https://vault.prod.teapot.ovh
     ## Controls whether users are allowed to create Bitwarden Sends.
     ## This setting applies globally to all users.
     ## To control this on a per-org basis instead, use the "Disable Send" org policy.
@@ -412,7 +412,7 @@ data:
     ## To make sure the email links are pointing to the correct host, set the DOMAIN variable.
     ## Note: if SMTP_USERNAME is specified, SMTP_PASSWORD is mandatory
     SMTP_HOST=sendmail-postfix-server
-    SMTP_FROM=vaultwarden@sendmail.dev.teapot.ovh
+    SMTP_FROM=vaultwarden@sendmail.teapot.ovh
     SMTP_FROM_NAME=Vaultwarden
     # SMTP_USERNAME=username
     # SMTP_PASSWORD=password

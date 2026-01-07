@@ -4,9 +4,9 @@ metadata:
   name: config
 data:
   "main.cf": |
-    myhostname = mail.sendmail.dev.teapot.ovh
-    smtp_helo_name = mail.sendmail.dev.teapot.ovh
-    mydomain = sendmail.dev.teapot.ovh
+    myhostname = mail.sendmail.teapot.ovh
+    smtp_helo_name = mail.sendmail.teapot.ovh
+    mydomain = sendmail.teapot.ovh
     myorigin = $mydomain
     mydestination = $mydomain
 
