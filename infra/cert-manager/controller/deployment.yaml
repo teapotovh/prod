@@ -56,7 +56,14 @@ spec:
               path: /livez
               scheme: HTTP
             initialDelaySeconds: 10
-            periodSeconds: 10
+            periodSeconds: 30
             timeoutSeconds: 15
             successThreshold: 1
             failureThreshold: 8
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi

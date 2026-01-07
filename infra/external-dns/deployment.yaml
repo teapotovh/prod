@@ -76,7 +76,7 @@ spec:
               path: /healthz
               port: http
             initialDelaySeconds: 10
-            periodSeconds: 10
+            periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 5
           readinessProbe:

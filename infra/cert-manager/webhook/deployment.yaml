@@ -46,10 +46,17 @@ spec:
               port: 6080
               scheme: HTTP
             initialDelaySeconds: 60
-            periodSeconds: 10
+            periodSeconds: 30
             timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 50m
+              memory: 64Mi
           readinessProbe:
             httpGet:
               path: /healthz

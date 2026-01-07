@@ -31,7 +31,7 @@ spec:
             path: /livez
             port: https
             scheme: HTTPS
-          periodSeconds: 10
+          periodSeconds: 30
         name: metrics-server
         ports:
         - containerPort: 10250
