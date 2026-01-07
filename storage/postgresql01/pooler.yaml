@@ -23,6 +23,13 @@ spec:
               matchLabels:
                 cnpg.io/pooler: postgresql01-pooler
             topologyKey: kubernetes.io/hostname
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits:
+          cpu: 200m
+          memory: 128Mi
   serviceTemplate:
     spec:
       internalTrafficPolicy: Local

@@ -17,6 +17,13 @@ spec:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
     podAntiAffinityType: required
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 2Gi
   managed:
     roles:
     - name: bottin
