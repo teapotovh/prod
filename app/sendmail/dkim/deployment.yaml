@@ -8,6 +8,12 @@ spec:
   replicas: 3
   template:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
       containers:
         - name: opendkim
           image: instrumentisto/opendkim:2.11-alpine

@@ -8,6 +8,12 @@ spec:
   replicas: 3
   template:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
       containers:
         - name: postfix
           image: instrumentisto/postfix:3.1-alpine
