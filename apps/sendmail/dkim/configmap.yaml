@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  "opendkim.conf": |
+    Syslog yes
+    SyslogSuccess yes
+
+    Socket inet:8891@0.0.0.0
+    InternalHosts 10.42.0.0/16, 100.64.0.0/16
+
+    Domain sendmail.dev.teapot.ovh
+    KeyFile /etc/opendkim/keys/02012026.key
+    RequireSafeKeys no
+    Selector 02012026
+
+    Canonicalization relaxed/simple
+
+    On-BadSignature reject
+    On-NoSignature reject
+    On-SignatureError reject

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+        - name: postfix
+          image: instrumentisto/postfix:3.1-alpine
+          ports:
+            - name: smtp
+              containerPort: 25
+          volumeMounts:
+            - name: config
+              mountPath: /etc/postfix/main.cf
+              subPath: main.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/sender_access
+              subPath: sender_access
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/header_checks
+              subPath: header_checks
+              readOnly: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+      volumes:
+        - name: config
+          configMap:
+            name: config
