@@ -8,7 +8,7 @@ spec:
     recordTTL: 300
     recordType: MX
     targets:
-    - "10 test.sendmail.teapot.ovh."
+    - "10 mail.sendmail.teapot.ovh."
   - dnsName: mail.sendmail.teapot.ovh
     recordTTL: 300
     recordType: TXT
