@@ -27,7 +27,15 @@ spec:
               containerPort: 25
           volumeMounts:
             - name: config
-              mountPath: /etc/postfix
+              mountPath: /etc/postfix/main.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/sender_access
+              subPath: sender_access
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/header_checks
+              subPath: header_checks
               readOnly: true
             - name: logs
               mountPath: /var/log/postfix
