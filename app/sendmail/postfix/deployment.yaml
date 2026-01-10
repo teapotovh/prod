@@ -8,6 +8,11 @@ spec:
   replicas: 3
   template:
     spec:
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
