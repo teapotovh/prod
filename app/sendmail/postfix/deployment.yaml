@@ -5,7 +5,8 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
-  replicas: 3
+  # TODO: raise back to 3
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -23,6 +24,15 @@ spec:
           - labelSelector:
               matchLabels: {}
             topologyKey: kubernetes.io/hostname
+        # TODO: remove when smtp is enabled on kube04
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - kube04.prod.infra.teapot.ovh
       containers:
         - name: postfix
           image: instrumentisto/postfix:3.1-alpine
