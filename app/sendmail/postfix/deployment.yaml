@@ -6,7 +6,7 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   # TODO: raise back to 3
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -33,6 +33,7 @@ spec:
                 operator: NotIn
                 values:
                 - kube04.prod.infra.teapot.ovh
+                - kube03.prod.infra.teapot.ovh
       containers:
         - name: postfix
           image: instrumentisto/postfix:3.1-alpine
