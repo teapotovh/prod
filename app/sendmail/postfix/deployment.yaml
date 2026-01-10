@@ -27,7 +27,12 @@ spec:
               containerPort: 25
           volumeMounts:
             - name: config
+              mountPath: /etc/syslog.conf
+              subPath: syslog.conf
+              readOnly: true
+            - name: config
               mountPath: /etc/postfix/main.cf
+              subPath: main.cf
               readOnly: true
             - name: config
               mountPath: /etc/postfix/sender_access
@@ -56,7 +61,7 @@ spec:
               mountPath: /var/log/postfix
               readOnly: true
           args:
-            - --file.log=/var/log/postfix/postfix.log
+            - --file.log=/var/log/postfix/mail.log
       volumes:
         - name: config
           configMap:
