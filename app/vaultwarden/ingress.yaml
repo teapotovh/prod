@@ -10,7 +10,7 @@ metadata:
       }
 spec:
   tls:
-  - secretName: teapot-dev-vault-tls
+  - secretName: teapot-prod-vault-tls
     hosts:
     - vault.prod.teapot.ovh
   rules:

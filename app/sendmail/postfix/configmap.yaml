@@ -35,6 +35,6 @@ data:
     bounce_queue_lifetime = 1h
 
   "sender_access": |
-    /@sendmail\.dev\.teapot\.ovh$/  OK
+    /@sendmail\.teapot\.ovh$/  OK
   "header_checks": |
-    /^From:.*@sendmail\.dev\.teapot\.ovh/ PREPEND Reply-To: dump@teapot.ovh
+    /^From:.*@sendmail\.teapot\.ovh/ PREPEND Reply-To: dump@teapot.ovh
