@@ -8,6 +8,7 @@ data:
     mail.* /dev/stdout
 
   "main.cf": |
+    queue_directory = /var/spool/postfix
     myhostname = mail.sendmail.teapot.ovh
     smtp_helo_name = mail.sendmail.teapot.ovh
     mydomain = sendmail.teapot.ovh

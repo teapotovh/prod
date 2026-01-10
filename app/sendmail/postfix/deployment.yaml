@@ -16,7 +16,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: 'true'
-        prometheus.io/port:   '9907'
+        prometheus.io/port:   '9154'
     spec:
       affinity:
         podAntiAffinity:
@@ -58,6 +58,8 @@ spec:
               readOnly: true
             - name: logs
               mountPath: /var/log/postfix
+            - name: spool
+              mountPath: /var/spool/postfix
           resources:
             requests:
               cpu: 10m
@@ -66,19 +68,25 @@ spec:
               cpu: 100m
               memory: 128Mi
         - name: postfix-exporter
-          image: sergeymakinen/postfix_exporter:v2.1.0
+          image: unikum/postfix_exporter
           ports:
             - name: metrics
-              containerPort: 9907
+              containerPort: 9154
           volumeMounts:
             - name: logs
               mountPath: /var/log/postfix
               readOnly: true
+            - name: spool
+              mountPath: /var/spool/postfix
+              readOnly: true
           args:
-            - --file.log=/var/log/postfix/mail.log
+            - --postfix.logfile_path=/var/log/postfix/mail.log
+            - --postfix.showq_path=/var/spool/postfix/public/showq
       volumes:
         - name: config
           configMap:
             name: config
         - name: logs
+          emptyDir: {}
+        - name: spool
           emptyDir: {}
