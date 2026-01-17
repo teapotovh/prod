@@ -8,6 +8,7 @@ resources:
 - local-path-provisioner.yaml
 - metrics-server.yaml
 - descheduler.yaml
+- reflector.yaml
 - reloader.yaml
 - cloudnative-pg.yaml
 - prometheus.yaml
