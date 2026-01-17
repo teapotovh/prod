@@ -24,3 +24,5 @@ data:
     use_razor2 1
     use_pyzor 1
     dns_available yes
+
+    dns_server 10.43.0.53
