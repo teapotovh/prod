@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  replicas: 1
+  template:
+    spec:
+      initContainers:
+      - name: fetch-hints
+        image: ghcr.io/alpine
+        command: ["sh", "-c", "wget https://www.internic.net/domain/named.root -O /hints/root.hints"]
+        volumeMounts:
+        - name: hints
+          mountPath: /hints
+      containers:
+      - name: unbound
+        image: ghcr.io/linuxcontainers/unbound:1.0
+        ports:
+        - name: dns-udp
+          containerPort: 53
+          protocol: UDP
+        - name: dns-tcp
+          containerPort: 53
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/unbound/unbound.conf
+          subPath: unbound.conf
+        - name: hints
+          mountPath: /etc/unbound/root.hints
+          subPath: root.hints
+      volumes:
+      - name: config
+        configMap:
+          name: unbound-config
+      - name: hints
+        emptyDir: {}
+---

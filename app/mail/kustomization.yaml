@@ -10,4 +10,5 @@ labels:
     app.kubernetes.io/managed-by: kustomize
 
 resources:
+- unbound
 - spamassassin
