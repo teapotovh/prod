@@ -21,6 +21,12 @@ spec:
   encryptedData:
     password: AgAEfeCfEQQCqU+rtlrS/5FJP3bXHTjHFkxaZhLeyY84k+UgZRV8qG1Zjz0IvhIASLxHK/3n5tHzOV4z33Y3x6nd4kmvBuSZCRsHEDojCOnVMm/TxpaKe1kdtGK7C06hqi81tkyW8oROxqbTwMc2lGuU48JocQPnjyMvhIitBvLsQdpQYu78Ug1LP8sVcCRovSsX44CjjmntTbgN5KTXAjaBKXb+CftvFhiGk3Fy43Hm/61B+RCazJ/lhlpapZhjv0lHA4fpHBJ+QuAKHWGRMmDr18muE0ZvHC0FaQlh4IqcPzvJoTEtiVZTjUFmwcVzk3l++x0HRPNZwsdXdsTDz1Yaowa7cr4K+6+7qtjmaR0hCdzqPsMkBuZ03BGG5mEqPHL5nHHd23EvO8lyfKgVQi5sYiplmt6mpuhYQdDBqBYmys/59DulKNjREvlD+5m8giibkvmUJLJXOxrvUG99GE7xowX9n56+AXihwhMmENoe2hsXLbQaXE7AV6mB/wwi9zSNJAzE0EhPtAnKbV/UL0BtQ5LOhbEQw9FJcq+MMIYaOWcvgkwvu7vbG+EKBUolXUtQx22/2ndF0nW0HYt5xwA6SHYonzkodgNfMFCP+VuV2v0cdm08TrXFjjtdHCvMDrmCQq4qWUoX1P+ep3005xDIxDYmlL/MccGxQdew2a/42G78ZE2zDJEfQDumyIxv8OBMPkjdWcpvI+1kduw4fJGxXsN63VMloNJlpyy/f+/7Fg==
   template:
+    metadata:
+      annotations:
+        reflector.emberstack.com/reflection-allowed: "true"
+        reflector.emberstack.com/reflection-allowed-namespaces: "app"
+        reflector.emberstack.com/reflection-auto-enabled: "true"
+        reflector.emberstack.com/reflection-auto-namespaces: "app"
     data:
       username: mail
 ---
