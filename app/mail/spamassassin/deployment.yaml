@@ -14,13 +14,11 @@ spec:
           - name: DB_USERNAME
             valueFrom:
               secretKeyRef:
-                namespace: storage
                 name: postgresql01-user-mail
                 key: username
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                namespace: storage
                 name: postgresql01-user-mail
                 key: password
         volumeMounts:

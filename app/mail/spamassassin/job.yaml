@@ -12,13 +12,11 @@ spec:
           - name: PGUSER
             valueFrom:
               secretKeyRef:
-                namespace: storage
                 name: postgresql01-user-mail
                 key: username
           - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
-                namespace: storage
                 name: postgresql01-user-mail
                 key: password
         command:
