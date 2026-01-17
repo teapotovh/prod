@@ -14,6 +14,8 @@ data:
 
       root-hints: "/etc/unbound/root.hints"
       auto-trust-anchor-file: "/etc/unbound/root.key"
+      access-control: 0.0.0.0/0 allow
+      do-not-query-localhost: no
       
       harden-glue: yes
       harden-dnssec-stripped: yes
