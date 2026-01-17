@@ -38,7 +38,8 @@ spec:
             command: ["spamc", "-K"]
         volumeMounts:
         - name: config
-          mountPath: /etc/mail/spamassassin
+          mountPath: /etc/mail/spamassassin/local.cf
+          subPath: local.cf
       volumes:
       - name: template
         configMap:
