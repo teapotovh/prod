@@ -3,7 +3,7 @@ kind: Database
 metadata:
   name: spamassassin-database
 spec:
-  name: mail
+  name: spamassassin
   owner: mail
   cluster:
     name: postgresql01-cluster
