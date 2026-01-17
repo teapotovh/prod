@@ -24,7 +24,7 @@ spec:
         - -c
         - |
           set -e
-          TABLE_EXISTS=$(psql -h postgresql01-pooler -d spamassassin -tAc "SELECT 1 FROM pg_tables WHERE tablename = 'bayes_vars';")
+          TABLE_EXISTS=$(psql -h postgresql01-pooler.storage -d spamassassin -tAc "SELECT 1 FROM pg_tables WHERE tablename = 'bayes_vars';")
 
           if [ "$TABLE_EXISTS" = "1" ]; then
             echo "Database already initialized. Skipping."
@@ -34,10 +34,10 @@ spec:
             curl -s https://raw.githubusercontent.com/apache/spamassassin/spamassassin_release_4_0_2/sql/awl_pg.sql > /tmp/awl.sql
 
             echo "Applying Bayes schema..."
-            psql -h postgresql01-pooler -d spamassassin -f /tmp/bayes.sql
+            psql -h postgresql01-pooler.storage -d spamassassin -f /tmp/bayes.sql
             
             echo "Applying AWL schema..."
-            psql -h postgresql01-pooler -d spamassassin -f /tmp/awl.sql
+            psql -h postgresql01-pooler.storage -d spamassassin -f /tmp/awl.sql
             
             echo "Database initialization complete."
           fi
