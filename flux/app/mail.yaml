@@ -1,0 +1,28 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: mail-storage
+spec:
+  interval: 5m
+  path: app/mail/storage
+  prune: true
+  dependsOn:
+    - name: postgresql01
+  sourceRef:
+    kind: GitRepository
+    name: prod
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: mail
+spec:
+  interval: 5m
+  path: app/mail
+  prune: true
+  dependsOn:
+    - name: app
+    - name: mail-storage
+  sourceRef:
+    kind: GitRepository
+    name: prod

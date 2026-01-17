@@ -4,3 +4,4 @@ resources:
 - app.yaml
 
 - sendmail.yaml
+- mail.yaml
