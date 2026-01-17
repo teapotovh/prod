@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: spamassassin
-        image: ghcr.io/teapotovh/spamassassin:v0.0.2
+        image: ghcr.io/teapotovh/spamassassin:v0.0.4
         ports:
         - name: milter
           containerPort: 783

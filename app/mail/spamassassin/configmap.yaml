@@ -4,22 +4,18 @@ metadata:
   name: config
 data:
   local.cf.tmpl: |
-    # Shared Postgres Backend
     use_bayes 1
     bayes_auto_learn 1
     bayes_store_module Mail::SpamAssassin::BayesStore::PgSQL
-    
-    # Placeholders for EnvSubst
     bayes_sql_dsn DBI:Pg:dbname=spamassassin;host=postgresql01-pooler.storage;port=5432
     bayes_sql_username ${DB_USERNAME}
     bayes_sql_password ${DB_PASSWORD}
-    
-    # Global learning for K8s
-    bayes_sql_override_username global_user
 
-    # Enable Auto-Whitelist (Shared)
-    use_awl 1
-    auto_whitelist_factory Mail::SpamAssassin::SQLBasedAddrList
+    # Group all bayes learnings in global metrics
+    bayes_sql_override_username global_user
+    
+    use_auto_welcomelist 1
+    auto_welcomelist_factory Mail::SpamAssassin::SQLBasedAddrList
     user_awl_dsn DBI:Pg:dbname=spamassassin;host=postgresql01-pooler.storage;port=5432
     user_awl_sql_username ${DB_USERNAME}
     user_awl_sql_password ${DB_PASSWORD}
