@@ -13,16 +13,16 @@ spec:
     type: RollingUpdate
   template:
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
+      # tolerations:
+      # - key: node-role.kubernetes.io/control-plane
+      #   operator: Exists
+      #   effect: NoSchedule
+      # nodeSelector:
+      #   node-role.kubernetes.io/control-plane: ""
       serviceAccountName: provisioner-service-account
       containers:
         - name: local-path-provisioner
-          image: rancher/local-path-provisioner:v0.0.32
+          image: mirror.gcr.io/rancher/local-path-provisioner:v0.0.32
           imagePullPolicy: IfNotPresent
           command:
             - local-path-provisioner

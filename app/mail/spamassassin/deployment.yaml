@@ -8,7 +8,7 @@ spec:
     spec:
       initContainers:
       - name: configure
-        image: alpine:latest
+        image: mirror.gcr.io/alpine
         command: ["sh", "-c", "apk add --no-cache gettext && envsubst < /tmpl/local.cf.tmpl > /etc/mail/spamassassin/local.cf"]
         env:
           - name: DB_USERNAME
@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: spamassassin
-        image: docker pull ghcr.io/teapotovh/spamassassin:v0.0.2
+        image: ghcr.io/teapotovh/spamassassin:v0.0.2
         ports:
         - name: milter
           containerPort: 783

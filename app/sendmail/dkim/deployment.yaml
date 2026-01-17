@@ -21,7 +21,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
         - name: opendkim
-          image: instrumentisto/opendkim:2.11-alpine
+          image: mirror.gcr.io/instrumentisto/opendkim:2.11-alpine
           ports:
             - name: milter
               containerPort: 8891

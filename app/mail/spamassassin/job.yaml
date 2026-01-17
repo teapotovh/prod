@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: init-db
-        image: postgres:alpine
+        image: mirror.gcr.io/postgres:alpine
         env:
           - name: PGUSER
             valueFrom:

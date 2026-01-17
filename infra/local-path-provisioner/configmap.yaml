@@ -45,5 +45,5 @@ data:
           effect: NoSchedule
       containers:
       - name: helper-pod
-        image: busybox
+        image: mirror.gcr.io/busybox
         imagePullPolicy: IfNotPresent

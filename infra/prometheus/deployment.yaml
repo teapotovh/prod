@@ -20,7 +20,7 @@ spec:
         node-role.kubernetes.io/control-plane: ""
       containers:
         - name: prometheus
-          image: prom/prometheus
+          image: mirror.gcr.io/prom/prometheus
           args:
             - "--storage.tsdb.retention.time=7d"
             - "--config.file=/etc/prometheus/prometheus.yml"

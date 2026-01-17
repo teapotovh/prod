@@ -37,7 +37,7 @@ spec:
                 - kube03.prod.infra.teapot.ovh
       containers:
         - name: postfix
-          image: instrumentisto/postfix:3.1-alpine
+          image: mirror.gcr.io/instrumentisto/postfix:3.1-alpine
           ports:
             - name: smtp
               containerPort: 25
@@ -70,7 +70,7 @@ spec:
               cpu: 100m
               memory: 128Mi
         - name: postfix-exporter
-          image: unikum/postfix_exporter
+          image: mirror.gcr.io/unikum/postfix_exporter
           ports:
             - name: metrics
               containerPort: 9154
