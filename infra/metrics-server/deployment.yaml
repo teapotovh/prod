@@ -9,12 +9,12 @@ spec:
       maxUnavailable: 1
   template:
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
+      # tolerations:
+      # - key: node-role.kubernetes.io/control-plane
+      #   operator: Exists
+      #   effect: NoSchedule
+      # nodeSelector:
+      #   node-role.kubernetes.io/control-plane: ""
       containers:
       - args:
         - --cert-dir=/tmp

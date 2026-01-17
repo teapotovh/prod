@@ -6,12 +6,12 @@ spec:
   replicas: 1
   template:
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
+      # tolerations:
+      # - key: node-role.kubernetes.io/control-plane
+      #   operator: Exists
+      #   effect: NoSchedule
       nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
+        # node-role.kubernetes.io/control-plane: ""
         kubernetes.io/os: linux
       serviceAccountName: serviceaccount
       enableServiceLinks: false

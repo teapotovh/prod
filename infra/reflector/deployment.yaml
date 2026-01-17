@@ -11,15 +11,15 @@ spec:
     type: RollingUpdate
   template:
     spec:
+      # tolerations:
+      # - key: node-role.kubernetes.io/control-plane
+      #   operator: Exists
+      #   effect: NoSchedule
+      # nodeSelector:
+      #   node-role.kubernetes.io/control-plane: ""
       serviceAccountName: serviceaccount
       securityContext:
         fsGroup: 2000
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
       containers:
         - name: reflector
           securityContext:
