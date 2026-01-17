@@ -23,10 +23,10 @@ spec:
   template:
     metadata:
       annotations:
-        reflector.emberstack.com/reflection-allowed: "true"
-        reflector.emberstack.com/reflection-allowed-namespaces: "app"
-        reflector.emberstack.com/reflection-auto-enabled: "true"
-        reflector.emberstack.com/reflection-auto-namespaces: "app"
+        reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "app"
+        reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "app"
     data:
       username: mail
 ---
