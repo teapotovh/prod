@@ -8,8 +8,8 @@ spec:
     spec:
       initContainers:
       - name: configure
-        image: mirror.gcr.io/alpine
-        command: ["sh", "-c", "apk add --no-cache gettext && envsubst < /tmpl/local.cf.tmpl > /etc/mail/spamassassin/local.cf"]
+        image: mirror.gcr.io/dibi/envsubst
+        command: ["sh", "-c", "envsubst < /tmpl/local.cf.tmpl > /etc/mail/spamassassin/local.cf"]
         env:
           - name: DB_USERNAME
             valueFrom:

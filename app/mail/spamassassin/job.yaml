@@ -29,6 +29,8 @@ spec:
           if [ "$TABLE_EXISTS" = "1" ]; then
             echo "Database already initialized. Skipping."
           else
+            apk add curl
+
             echo "Fetching schemas from GitHub..."
             curl -s https://raw.githubusercontent.com/apache/spamassassin/spamassassin_release_4_0_2/sql/bayes_pg.sql > /tmp/bayes.sql
             curl -s https://raw.githubusercontent.com/apache/spamassassin/spamassassin_release_4_0_2/sql/awl_pg.sql > /tmp/awl.sql
