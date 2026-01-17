@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filter
+spec:
+  replicas: 3
+  template:
+    spec:
+      initContainers:
+      - name: configure
+        image: alpine:latest
+        command: ["sh", "-c", "apk add --no-cache gettext && envsubst < /tmpl/local.cf.tmpl > /etc/mail/spamassassin/local.cf"]
+        env:
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                namespace: storage
+                name: postgresql01-user-mail
+                key: username
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                namespace: storage
+                name: postgresql01-user-mail
+                key: password
+        volumeMounts:
+        - name: template
+          mountPath: /tmpl
+        - name: config
+          mountPath: /etc/mail/spamassassin
+
+      containers:
+      - name: spamassassin
+        image: docker pull ghcr.io/teapotovh/spamassassin:v0.0.2
+        ports:
+        - name: milter
+          containerPort: 783
+        readinessProbe:
+          exec:
+            command: ["spamc", "-K"]
+        volumeMounts:
+        - name: config
+          mountPath: /etc/mail/spamassassin
+      volumes:
+      - name: template
+        configMap:
+          name: config
+      - name: config
+        emptyDir: {}
