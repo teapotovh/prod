@@ -44,7 +44,6 @@ spec:
             - --source=service
             - --provider=ovh
             - --domain-filter=teapot.ovh
-            - --domain-filter=prod.teapot.ovh
             - --txt-owner-id=prod
             - --managed-record-types=A
             - --managed-record-types=CNAME
