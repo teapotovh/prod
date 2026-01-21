@@ -43,7 +43,6 @@ spec:
           - sh
           - -c
           - |
-            apk add --no-cache gettext
             mkdir -p /etc/postfix
             for f in /template/*; do
               [ -f "$f" ] || continue
@@ -58,12 +57,12 @@ spec:
           - name: LDAP_BIND_DN
             valueFrom:
               secretKeyRef:
-                name: bottin-server
+                name: bottin-admin
                 key: username
           - name: LDAP_BIND_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: bottin-server
+                name: bottin-admin
                 key: password
         volumeMounts:
         - name: template
@@ -77,16 +76,16 @@ spec:
           - name: LDAP_BIND_DN
             valueFrom:
               secretKeyRef:
-                name: bottin-server
+                name: bottin-admin
                 key: username
           - name: LDAP_BIND_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: bottin-server
+                name: bottin-admin
                 key: password
         volumeMounts:
         - name: other-config
-          mountPath: /tmpl
+          mountPath: /template
         - name: sasl
           mountPath: /sasl
 
@@ -110,7 +109,6 @@ spec:
               readOnly: true
             - name: config
               mountPath: /etc/postfix
-              readOnly: true
             - name: logs
               mountPath: /var/log/postfix
             - name: spool
