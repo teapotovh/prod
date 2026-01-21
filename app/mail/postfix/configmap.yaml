@@ -60,7 +60,7 @@ data:
     append_dot_mydomain = no
     delay_warning_time = 10m
     biff = no
-    compatibility_level = 3.6
+    compatibility_level = 3
     strict_rfc821_envelopes = yes
     show_user_unknown_table_name = no
     disable_vrfy_command = yes
