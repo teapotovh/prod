@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
             - --log-format=text
-            # - --log-level=debug
+            - --log-level=debug
             - --interval=1m
             - --source=crd
             - --source=ingress
