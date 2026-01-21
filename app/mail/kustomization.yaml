@@ -12,3 +12,5 @@ labels:
 resources:
 - unbound
 - spamassassin
+- dkim
+- dmarc

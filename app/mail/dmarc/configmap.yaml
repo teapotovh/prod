@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  "opendmarc.conf": |
+    Socket inet:8893@0.0.0.0
+    SoftwareHeader true
+    SPFIgnoreResults true
+    SPFSelfValidate true
+    DNSResolver 10.43.0.53
