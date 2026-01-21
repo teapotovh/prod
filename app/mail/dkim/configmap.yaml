@@ -11,12 +11,12 @@ data:
     InternalHosts 10.42.0.0/16, 100.64.0.0/16
 
     Domain teapot.ovh
-    KeyFile /etc/opendkim/keys/teapot.ovh/21012026.key
+    KeyFile /etc/opendkim/keys/teapot.ovh.21012026.key
     RequireSafeKeys no
     Selector 21012026
 
     Domain cappuccino.ovh
-    KeyFile /etc/opendkim/keys/cappuccino.ovh/21012026.key
+    KeyFile /etc/opendkim/keys/cappuccino.ovh.21012026.key
     RequireSafeKeys no
     Selector 21012026
 

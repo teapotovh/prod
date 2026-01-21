@@ -31,7 +31,7 @@ spec:
               subPath: opendkim.conf
               readOnly: true
             - name: keys
-              mountPath: /etc/opendkim/keys/
+              mountPath: /etc/opendkim/keys
               readOnly: true
           resources:
             requests:
