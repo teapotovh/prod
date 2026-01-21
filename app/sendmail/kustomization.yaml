@@ -12,3 +12,4 @@ labels:
 resources:
 - dkim
 - postfix
+- dnsendpoint.yaml
