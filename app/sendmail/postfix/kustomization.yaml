@@ -7,5 +7,5 @@ labels:
 
 resources:
 - configmap.yaml
-- deployment.yaml
+- statefulset.yaml
 - service.yaml
