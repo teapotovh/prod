@@ -21,7 +21,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
         - name: opendmarc
-          image: mirror.gcr.io/instrumentisto/opendkim:1.4-alpine
+          image: mirror.gcr.io/instrumentisto/opendmarc:1.4-alpine
           ports:
             - name: milter
               containerPort: 8893
