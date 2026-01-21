@@ -14,5 +14,6 @@ resources:
 - spamassassin
 - dkim
 - dmarc
+- postfix
 
 - dnsendpoint.yaml

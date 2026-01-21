@@ -1,0 +1,170 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: server
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  # TODO: raise back to 3
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port:   '9154'
+    spec:
+      terminationGracePeriodSeconds: 30
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
+        # TODO: remove when we actually go into prod
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - kube02.prod.infra.teapot.ovh
+                - kube03.prod.infra.teapot.ovh
+
+      initContainers:
+      - name: configure-postfix
+        image: mirror.gcr.io/dibi/envsubst
+        command: 
+          - sh
+          - -c
+          - |
+            apk add --no-cache gettext
+            mkdir -p /etc/postfix
+            for f in /template/*; do
+              [ -f "$f" ] || continue
+              base=$(basename "$f")
+              if [ "${base##*.}" = "tmpl" ]; then
+                envsubst < "$f" > "/etc/postfix/${base%.tmpl}"
+              else
+                cp "$f" "/etc/postfix/$base"
+              fi
+            done
+        env:
+          - name: LDAP_BIND_DN
+            valueFrom:
+              secretKeyRef:
+                name: bottin-server
+                key: username
+          - name: LDAP_BIND_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: bottin-server
+                key: password
+        volumeMounts:
+        - name: template
+          mountPath: /template
+        - name: config
+          mountPath: /etc/postfix
+      - name: configure-sasl
+        image: mirror.gcr.io/dibi/envsubst
+        command: ["sh", "-c", "envsubst < /template/smtpd.conf.tmpl > /sasl/smtpd.conf"]
+        env:
+          - name: LDAP_BIND_DN
+            valueFrom:
+              secretKeyRef:
+                name: bottin-server
+                key: username
+          - name: LDAP_BIND_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: bottin-server
+                key: password
+        volumeMounts:
+        - name: other-config
+          mountPath: /tmpl
+        - name: sasl
+          mountPath: /sasl
+
+      containers:
+        - name: postfix
+          image: mirror.gcr.io/instrumentisto/postfix:3.1-alpine
+          ports:
+            - name: smtp
+              containerPort: 25
+            - name: submission
+              containerPort: 587
+            - name: submissions
+              containerPort: 465
+          volumeMounts:
+            - name: other-config
+              mountPath: /etc/syslog.conf
+              subPath: syslog.conf
+              readOnly: true
+            - name: sasl
+              mountPath: /etc/postfix/sasl
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix
+              readOnly: true
+            - name: logs
+              mountPath: /var/log/postfix
+            - name: spool
+              mountPath: /var/spool/postfix
+            - name: tls
+              mountPath: /etc/postfix/tls
+              readOnly: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+        - name: postfix-exporter
+          image: mirror.gcr.io/unikum/postfix_exporter
+          ports:
+            - name: metrics
+              containerPort: 9154
+          volumeMounts:
+            - name: logs
+              mountPath: /var/log/postfix
+              readOnly: true
+            - name: spool
+              mountPath: /var/spool/postfix
+              readOnly: true
+          args:
+            - --postfix.logfile_path=/var/log/postfix/mail.log
+            - --postfix.showq_path=/var/spool/postfix/public/showq
+      volumes:
+        - name: template
+          configMap:
+            name: config
+        - name: other-config
+          configMap:
+            name: other-config
+        - name: config
+          emptyDir: {}
+        - name: sasl
+          emptyDir: {}
+        - name: logs
+          emptyDir: {}
+          volumeMounts:
+        - name: tls
+          secret:
+            secretName: mail-postfix-certificate
+
+
+  volumeClaimTemplates:
+    - metadata:
+        name: spool
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "local-path-storageclass"
+        resources:
+          requests:
+            storage: 64Mi
