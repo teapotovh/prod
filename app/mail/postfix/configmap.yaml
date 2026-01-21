@@ -55,7 +55,7 @@ data:
     anvil     unix  -       -       n       -       1       anvil
     scache    unix  -       -       n       -       1       scache
 
-  "main.cf.tmpl": |
+  "main.cf": |
     debug_peer_level = 3
     append_dot_mydomain = no
     delay_warning_time = 10m
@@ -71,7 +71,7 @@ data:
     recipient_delimiter = +-
     myhostname = smtp.teapot.ovh
 
-    smtpd_banner = $myhostname ESMTP $mail_name (${HOSTNAME}/Debian/GNU)
+    smtpd_banner = $myhostname ESMTP $mail_name
     smtp_helo_name = $myhostname
 
     virtual_mailbox_domains = ldap:/etc/postfix/ldap_domains.cf

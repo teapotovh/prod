@@ -108,7 +108,25 @@ spec:
               mountPath: /etc/postfix/sasl
               readOnly: true
             - name: config
-              mountPath: /etc/postfix
+              mountPath: /etc/postfix/master.cf
+              subPath: master.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/main.cf
+              subPath: main.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/ldap_domains.cf
+              subPath: ldap_domains.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/ldap_alias_map.cf
+              subPath: ldap_alias_map.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/ldap_sender_map.cf
+              subPath: ldap_sender_map.cf
+              readOnly: true
             - name: logs
               mountPath: /var/log/postfix
             - name: spool
