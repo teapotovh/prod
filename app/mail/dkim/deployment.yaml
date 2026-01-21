@@ -46,4 +46,4 @@ spec:
             name: config
         - name: keys
           secret:
-            secretName: sendmail-dkim-keys
+            secretName: mail-dkim-keys
