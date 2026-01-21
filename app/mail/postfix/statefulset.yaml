@@ -34,7 +34,7 @@ spec:
                 operator: NotIn
                 values:
                 - kube02.prod.infra.teapot.ovh
-                - kube03.prod.infra.teapot.ovh
+                - kube04.prod.infra.teapot.ovh
 
       initContainers:
       - name: configure-postfix
