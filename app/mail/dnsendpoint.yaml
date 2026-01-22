@@ -19,6 +19,10 @@ spec:
   #   recordType: TXT
   #   targets:
   #   - "v=spf1 mx -all"
+  # - dnsName: _dmarc.teapot.ovh
+  #   recordTTL: 300
+  #   recordType: TXT
+  #   targets:
   #   - "v=DMARC1; p=reject; rua=mailto:root@teapot.ovh; ruf=mailto:root@teapot.ovh; fo=1:d:s; adkim=r; aspf=r"
   - dnsName: 21012026._domainkey.teapot.ovh
     recordTTL: 300
@@ -35,6 +39,10 @@ spec:
     recordType: TXT
     targets:
     - "v=spf1 mx -all"
+  - dnsName: _dmarc.cappuccino.ovh
+    recordTTL: 300
+    recordType: TXT
+    targets:
     - "v=DMARC1; p=reject; rua=mailto:root@teapot.ovh; ruf=mailto:root@teapot.ovh; fo=1:d:s; adkim=r; aspf=r"
   - dnsName: 21012026._domainkey.cappuccino.ovh
     recordTTL: 300
