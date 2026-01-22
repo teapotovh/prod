@@ -7,6 +7,9 @@ spec:
   strategy:
     type: Recreate
   template:
+    metadata:
+      labels:
+        domain: teapot.ovh
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane
@@ -104,6 +107,9 @@ spec:
   strategy:
     type: Recreate
   template:
+    metadata:
+      labels:
+        domain: cappuccino.ovh
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane

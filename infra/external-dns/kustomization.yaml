@@ -13,8 +13,9 @@ labels:
 resources:
 - https://github.com/kubernetes-sigs/external-dns/raw/refs/tags/v0.20.0/config/crd/standard/dnsendpoints.externaldns.k8s.io.yaml
 
+- namespace.yaml
+- serviceaccount.yaml
 - rbac.yaml
 - secret.yaml
 - deployment.yaml
-- serviceaccount.yaml
-- namespace.yaml
+- service.yaml
