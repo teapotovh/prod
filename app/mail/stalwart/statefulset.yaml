@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: server
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  # TODO: scale to 3
+  replicas: 1
+  podManagementPolicy: Parallel
+  template:
+    spec:
+      containers:
+      - name: stalwart
+        image: stalwartlabs/stalwart:v0.15-alpine
+        ports:
+        - containerPort: 24
+          name: lmtp
+        - containerPort: 993
+          name: imaps
+        volumeMounts:
+        - name: config
+          mountPath: /opt/stalwart/etc/
+          readOnly: true
+        - name: tls
+          mountPath: /opt/stalwart/etc/tls
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /healthz/live
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 30
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 100m
+            memory: 256Mi
+        env:
+        - name: LDAP_BIND_DN
+          valueFrom:
+            secretKeyRef:
+              name: bottin-admin
+              key: username
+        - name: LDAP_BIND_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bottin-admin
+              key: password
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgresql01-user-mail
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql01-user-mail
+              key: password
+        # - name: S3_ID
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: apps-mail-s3-secret
+        #       key: id
+        # - name: S3_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: apps-mail-s3-secret
+        #       key: key
+      volumes:
+      - name: config
+        configMap:
+          name: config
+      - name: tls
+        secret:
+          secretName: mail-stalwart-certificate

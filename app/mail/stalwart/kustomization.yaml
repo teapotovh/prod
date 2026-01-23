@@ -1,0 +1,15 @@
+namePrefix: apps-mail-
+namespace: apps
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: apps-mail
+    app.kubernetes.io/name: apps-mail
+    app.kubernetes.io/part-of: apps-mail
+
+resources:
+- certificate.yaml
+- configmap.yaml
+- statefulset.yaml
+- service.yaml

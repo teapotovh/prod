@@ -15,5 +15,6 @@ resources:
 - dkim
 - dmarc
 - postfix
+- stalwart
 
 - dnsendpoint.yaml
