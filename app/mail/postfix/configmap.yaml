@@ -82,7 +82,8 @@ data:
     virtual_alias_maps = ldap:/etc/postfix/ldap_alias_map.cf
     smtpd_sender_login_maps = ldap:/etc/postfix/ldap_sender_map.cf
 
-    virtual_transport = lmtp:mail-stalwart-lmtp:24
+    virtual_transport = lmtp:inet:mail-stalwart-lmtp:24
+    lmtp_host_lookup = dns, native
 
     # https://wiki.debian.org/Postfix#anti-spam:_smtp_restrictions
     smtpd_helo_required = yes
