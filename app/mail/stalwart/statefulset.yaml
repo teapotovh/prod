@@ -10,6 +10,24 @@ spec:
   podManagementPolicy: Parallel
   template:
     spec:
+      terminationGracePeriodSeconds: 30
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
+        # TODO: remove when we actually go into prod
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - kube02.prod.infra.teapot.ovh
+                - kube04.prod.infra.teapot.ovh
+
       containers:
       - name: stalwart
         image: stalwartlabs/stalwart:v0.15-alpine
