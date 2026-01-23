@@ -18,6 +18,8 @@ spec:
           name: lmtp
         - containerPort: 993
           name: imaps
+        - containerPort: 8080
+          name: http
         volumeMounts:
         - name: config
           mountPath: /opt/stalwart/etc/

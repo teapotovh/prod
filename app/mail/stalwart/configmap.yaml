@@ -80,3 +80,8 @@ data:
     level = "debug"
     ansi = false
     enable = true
+
+    # Required for readyz/livez
+    [server.listener."http"]
+    bind = "[::]:8080"
+    protocol = "http"
