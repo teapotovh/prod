@@ -5,5 +5,5 @@ metadata:
 spec:
   ports:
   - protocol: TCP
-    port: 783
+    port: 10017
     targetPort: milter

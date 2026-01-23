@@ -99,7 +99,7 @@ data:
     smtpd_sasl_auth_enable = yes
     smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
 
-    smtpd_milters = inet:mail-dkim-filter:8891, inet:mail-dmarc-filter:8893, inet:mail-spamassassin-filter:783
+    smtpd_milters = inet:mail-dkim-filter:8891, inet:mail-dmarc-filter:8893, inet:mail-spamassassin-filter:10017
     non_smtpd_milters = $smtpd_milters
     milter_default_action = accept
     milter_protocol = 6
