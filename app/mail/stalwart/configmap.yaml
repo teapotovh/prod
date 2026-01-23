@@ -35,8 +35,8 @@ data:
     host = "postgresql01-pooler.storage"
     port = 5432
     database = "stalwart"
-    user = "%{env:PSQL_USERNAME}%"
-    password = "%{env:PSQL_PASSWORD}%"
+    user = "%{env:DB_USERNAME}%"
+    password = "%{env:DB_PASSWORD}%"
     timeout = "5s"
 
     [store.psql.tls]
