@@ -23,7 +23,8 @@ data:
     tls.implicit = true
 
     [session.rcpt]
-    relay = [ { if = "listener", eq = "lmtp", then = true } ]
+    relay = [ { if = "is-local-domain", ne = "", then = true },
+              { else = false } ]
 
     [session.auth]
     require = [ { if = "listener", eq = "lmtp", then = false },
@@ -62,7 +63,7 @@ data:
     [directory."ldap"]
     type = "ldap"
     url = "ldap://apps-bottin-server.apps"
-    base-dn = "ou=users,dc=teapot,dc=ovh"
+    base-dn = "dc=teapot,dc=ovh"
     [directory."ldap".bind]
     dn = "%{env:LDAP_BIND_DN}%"
     secret = "%{env:LDAP_BIND_PASSWORD}%"
@@ -71,7 +72,9 @@ data:
     method = "lookup"
 
     [directory."ldap".filter]
-    name = "(&(objectClass=posixAccount)(memberOf=cn=mail,ou=accesses,dc=teapot,dc=ovh)(mail=?))"
+    email = "(&(objectClass=posixAccount)(memberOf=cn=mail,ou=accesses,dc=teapot,dc=ovh)(mail=?))"
+    domains = "(&(objectClass=domain)(domain=?))"
+    name = "(&(objectClass=posixAccount)(memberOf=cn=mail,ou=accesses,dc=teapot,dc=ovh)(cn=?))"
 
     [directory."ldap".attributes]
     name = "cn"
