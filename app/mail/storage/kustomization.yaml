@@ -11,3 +11,4 @@ labels:
 
 resources:
 - spamassassin.yaml
+- stalwart.yaml
