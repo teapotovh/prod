@@ -1,12 +1,9 @@
-namePrefix: apps-mail-
-namespace: apps
+namePrefix: stalwart-
 
 labels:
 - includeSelectors: true
   pairs:
-    app: apps-mail
-    app.kubernetes.io/name: apps-mail
-    app.kubernetes.io/part-of: apps-mail
+    app.kubernetes.io/component: stalwart
 
 resources:
 - certificate.yaml
