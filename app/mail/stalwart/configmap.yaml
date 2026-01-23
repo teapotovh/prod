@@ -62,7 +62,7 @@ data:
 
     [directory."ldap"]
     type = "ldap"
-    url = "ldap://apps-bottin-server.apps"
+    url = "ldap://bottin-server.storage"
     base-dn = "dc=teapot,dc=ovh"
     [directory."ldap".bind]
     dn = "%{env:LDAP_BIND_DN}%"
