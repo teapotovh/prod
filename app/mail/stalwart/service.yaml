@@ -20,7 +20,6 @@ kind: Service
 metadata:
   name: lmtp
 spec:
-  type: NodePort
   internalTrafficPolicy: Local
   externalTrafficPolicy: Local
   ports:
