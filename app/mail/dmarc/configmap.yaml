@@ -13,4 +13,3 @@ data:
     SoftwareHeader true
     SPFIgnoreResults true
     SPFSelfValidate true
-    DNSResolver 10.43.0.53
