@@ -21,7 +21,7 @@ spec:
               matchLabels: {}
             topologyKey: kubernetes.io/hostname
       initContainers:
-      - name: configure-postfix
+      - name: configure
         image: mirror.gcr.io/dibi/envsubst
         command: ["sh", "-c", "envsubst < /template/opendkim.conf.tmpl > /config/opendkim.conf"]
         volumeMounts:
