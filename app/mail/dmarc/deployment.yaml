@@ -27,8 +27,7 @@ spec:
               containerPort: 8893
           volumeMounts:
             - name: config
-              mountPath: /etc/opendmarc.conf
-              subPath: opendmarc.conf
+              mountPath: /etc/opendmarc
               readOnly: true
           resources:
             requests:
