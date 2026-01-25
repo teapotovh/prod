@@ -23,15 +23,15 @@ data:
     tls.implicit = true
 
     [session.rcpt]
-    relay = [ { if = "is-local-domain", ne = "", then = true },
-              { else = false } ]
+    relay = true
 
     [session.auth]
-    require = [ { if = "listener", eq = "lmtp", then = false },
-                { else = true } ]
+    require = false
 
     [spam-filter]
     enable = false
+    [auth.dkim]
+    verify = "disable"
 
     [storage]
     data = "psql"
