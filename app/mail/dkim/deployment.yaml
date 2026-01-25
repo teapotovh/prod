@@ -20,6 +20,15 @@ spec:
           - labelSelector:
               matchLabels: {}
             topologyKey: kubernetes.io/hostname
+      initContainers:
+      - name: configure-postfix
+        image: mirror.gcr.io/dibi/envsubst
+        command: ["sh", "-c", "envsubst < /template/opendkim.conf.tmpl > /config/opendkim.conf"]
+        volumeMounts:
+        - name: template
+          mountPath: /template
+        - name: config
+          mountPath: /config
       containers:
         - name: opendkim
           image: mirror.gcr.io/instrumentisto/opendkim:2.11-alpine
@@ -28,7 +37,16 @@ spec:
               containerPort: 8891
           volumeMounts:
             - name: config
-              mountPath: /etc/opendkim
+              mountPath: /etc/opendkim/opendkim.conf
+              subPath: opendkim.conf
+              readOnly: true
+            - name: tables
+              mountPath: /etc/opendkim/KeyTable
+              subPath: KeyTable
+              readOnly: true
+            - name: tables
+              mountPath: /etc/opendkim/SigningTable
+              subPath: SigningTable
               readOnly: true
             - name: keys
               mountPath: /etc/opendkim/keys
@@ -41,7 +59,12 @@ spec:
               cpu: 50m
               memory: 64Mi
       volumes:
+        - name: template
+          configMap:
+            name: config
         - name: config
+          emptyDir: {}
+        - name: tables
           configMap:
             name: config
         - name: keys

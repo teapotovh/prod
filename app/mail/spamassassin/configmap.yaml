@@ -25,4 +25,9 @@ data:
     use_pyzor 1
     dns_available yes
 
+    # More verbose headers
+    add_header all Report _REPORT_
+    add_header all Status _YESNO_, score=_SCORE_ required=_REQD_ tests=_TESTS_
+
     dns_server 10.43.0.53
+    report_hostname smtp.teapot.ovh
