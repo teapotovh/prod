@@ -30,12 +30,8 @@ data:
     require = [ { if = "listener", eq = "lmtp", then = false },
                 { else = true } ]
 
-    [spam]
+    [spam-filter]
     enable = false
-
-    [spam.header]
-    parse = true
-
 
     [storage]
     data = "psql"
