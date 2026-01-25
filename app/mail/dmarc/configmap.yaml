@@ -3,12 +3,12 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  "opendmarc.conf.tmpl": |
+  "opendmarc.conf": |
     Syslog true
     SyslogFacility mail
 
     Socket inet:8893@0.0.0.0
-    AuthservID smtp.teapot.ovh (${HOSTNAME})
+    AuthservID smtp.teapot.ovh
 
     SoftwareHeader true
     SPFIgnoreResults true
