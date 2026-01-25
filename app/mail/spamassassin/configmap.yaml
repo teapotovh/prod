@@ -28,6 +28,7 @@ data:
     # More verbose headers
     add_header all Report _REPORT_
     add_header all Status _YESNO_, score=_SCORE_ required=_REQD_ tests=_TESTS_
+    add_header all Level _STARS(*)_
 
     dns_server 10.43.0.53
-    report_hostname smtp.teapot.ovh
+    report_hostname smtp.teapot.ovh (${HOSTNAME})
