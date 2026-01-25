@@ -8,6 +8,8 @@ data:
     SyslogFacility mail
 
     Socket inet:8893@0.0.0.0
+    AuthservID smtp.teapot.ovh
+
     SoftwareHeader true
     SPFIgnoreResults true
     SPFSelfValidate true
