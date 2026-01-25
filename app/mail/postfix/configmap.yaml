@@ -59,7 +59,7 @@ data:
     anvil     unix  -       -       n       -       1       anvil
     scache    unix  -       -       n       -       1       scache
 
-  "main.cf": |
+  "main.cf.tmpl": |
     debug_peer_level = 3
     append_dot_mydomain = no
     delay_warning_time = 10m
@@ -73,7 +73,7 @@ data:
 
     queue_directory = /var/spool/postfix
     recipient_delimiter = +-
-    myhostname = smtp.teapot.ovh
+    myhostname = smtp.teapot.ovh (${HOSTNAME})
 
     smtpd_banner = $myhostname ESMTP $mail_name
     smtp_helo_name = $myhostname
@@ -110,7 +110,7 @@ data:
 
     smtp_tls_security_level = may
     smtp_tls_note_starttls_offer = yes
-    smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+    smtp_tls_session_cache_database = btree:$${data_directory}/smtp_scache
 
     smtpd_tls_security_level = encrypt
     smtpd_tls_auth_only = yes
