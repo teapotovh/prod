@@ -73,10 +73,10 @@ data:
 
     queue_directory = /var/spool/postfix
     recipient_delimiter = +-
-    myhostname = smtp.teapot.ovh (${HOSTNAME})
+    myhostname = smtp.teapot.ovh
 
-    smtpd_banner = $myhostname ESMTP $mail_name
-    smtp_helo_name = $myhostname
+    smtpd_banner = $${escape}myhostname ESMTP $${escape}mail_name (${HOSTNAME})
+    smtp_helo_name = $${escape}myhostname
 
     virtual_mailbox_domains = ldap:/etc/postfix/ldap_domains.cf
     virtual_alias_maps = ldap:/etc/postfix/ldap_alias_map.cf
@@ -101,7 +101,7 @@ data:
     smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
 
     smtpd_milters = inet:mail-dkim-filter:8891, inet:mail-dmarc-filter:8893, inet:mail-spamassassin-filter:10017
-    non_smtpd_milters = $smtpd_milters
+    non_smtpd_milters = $${escape}smtpd_milters
     milter_default_action = accept
     milter_protocol = 6
     # apply dkim to internal messages aswell, such as bounces
@@ -110,7 +110,7 @@ data:
 
     smtp_tls_security_level = may
     smtp_tls_note_starttls_offer = yes
-    smtp_tls_session_cache_database = btree:$${data_directory}/smtp_scache
+    smtp_tls_session_cache_database = btree:${${escape}data_directory}/smtp_scache
 
     smtpd_tls_security_level = encrypt
     smtpd_tls_auth_only = yes
