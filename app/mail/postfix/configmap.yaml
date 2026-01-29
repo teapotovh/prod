@@ -80,6 +80,8 @@ data:
 
     virtual_mailbox_domains = ldap:/etc/postfix/ldap_domains.cf
     virtual_alias_maps = ldap:/etc/postfix/ldap_alias_map.cf
+    alias_maps =
+    alias_database =
     smtpd_sender_login_maps = ldap:/etc/postfix/ldap_sender_map.cf
 
     virtual_transport = lmtp:inet:mail-stalwart-lmtp:24

@@ -31,4 +31,4 @@ data:
     add_header all Level _STARS(*)_
 
     dns_server 10.43.0.53
-    report_hostname smtp.teapot.ovh (${HOSTNAME})
+    report_hostname smtp.teapot.ovh
