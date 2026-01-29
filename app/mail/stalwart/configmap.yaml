@@ -92,7 +92,7 @@ data:
 
     [tracer.log]
     type = "stdout"
-    level = "debug"
+    level = "info"
     ansi = false
     enable = true
 
