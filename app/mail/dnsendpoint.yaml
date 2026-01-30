@@ -14,7 +14,7 @@ spec:
     recordType: TXT
     targets:
     - "v=spf1 a -all"
-  - dnsName: 30012026._domainkey.smtpteapot.ovh
+  - dnsName: 30012026._domainkey.smtp.teapot.ovh
     recordTTL: 300
     recordType: TXT
     targets:
