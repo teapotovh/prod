@@ -11,5 +11,6 @@ data:
     Domain smtp.teapot.ovh
     KeyFile /etc/openarc/keys/smtp.teapot.ovh.30012026.key
     Selector 30012026
+    RequireSafeKeys no
 
     Canonicalization relaxed/simple
