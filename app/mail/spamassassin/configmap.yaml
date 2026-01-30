@@ -35,3 +35,4 @@ data:
 
     # Don't flag empty messages, often the case with GPG-encrypted messages
     score EMPTY_MESSAGE 0
+    trusted_networks smtp.teapot.ovh
