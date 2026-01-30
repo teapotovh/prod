@@ -33,6 +33,10 @@ data:
     dns_server 10.43.0.53
     report_hostname smtp.teapot.ovh
 
+    trusted_networks smtp.teapot.ovh
+
     # Don't flag empty messages, often the case with GPG-encrypted messages
     score EMPTY_MESSAGE 0
-    trusted_networks smtp.teapot.ovh
+    # Don't flag messages with a lot of dots as badly (still flag them +1, due
+    # to Gmail policy with dots).
+    score AC_FROM_MANY_DOTS 1.0
