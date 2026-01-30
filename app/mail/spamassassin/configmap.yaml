@@ -32,3 +32,6 @@ data:
 
     dns_server 10.43.0.53
     report_hostname smtp.teapot.ovh
+
+    # Don't flag empty messages, often the case with GPG-encrypted messages
+    score EMPTY_MESSAGE 0
