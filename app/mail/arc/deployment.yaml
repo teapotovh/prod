@@ -20,9 +20,25 @@ spec:
           - labelSelector:
               matchLabels: {}
             topologyKey: kubernetes.io/hostname
+      initContainers:
+        - name: fix-keys
+          image: alpine:latest
+          command:
+            - sh
+            - -c
+            - |
+              cp -r /mnt/keys/* /mnt/fixed-keys/
+              chmod 700 /mnt/fixed-keys
+              chmod 600 /mnt/fixed-keys/*
+          volumeMounts:
+            - name: keys
+              mountPath: /mnt/keys
+              readOnly: true
+            - name: fixed-keys
+              mountPath: /mnt/fixed-keys
       containers:
         - name: openarc
-          image: ghcr.io/teapotovh/openarc:v0.0.7
+          image: ghcr.io/teapotovh/openarc:v0.0.8
           ports:
             - name: milter
               containerPort: 8893
@@ -31,7 +47,7 @@ spec:
               mountPath: /etc/openarc.conf
               subPath: openarc.conf
               readOnly: true
-            - name: keys
+            - name: fixed-keys
               mountPath: /etc/openarc/keys
               readOnly: true
           resources:
@@ -48,3 +64,5 @@ spec:
         - name: keys
           secret:
             secretName: mail-arc-keys
+        - name: fixed-keys
+          emptyDir: {}
