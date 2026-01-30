@@ -14,6 +14,11 @@ spec:
     recordType: TXT
     targets:
     - "v=spf1 a -all"
+  - dnsName: 30012026._domainkey.smtpteapot.ovh
+    recordTTL: 300
+    recordType: TXT
+    targets:
+    - "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtZlCwbnJYlWbVwCIjEidcJgVZYPESQzUKOlAqMyNoMGi/DrGDEN0iNJ4Pvxqhv8FNuY2uC9JDFw/32GXomNA0tS5TjXLZH1mJJrJ53DVSoGQvg1nSceLWaigzJm+ZKLhBQ59sGLZqJI0niZPV7Tojg5Y3MbXWh55L8NXGAN9gJu+WtIDrcJ4wS7pdgtEoWrd+Bt69VjSfTTXUwT+wdZwGPTuLoIaF9TxtEIzt4rnxOedpbQuqmU+zIoLA7Dl06tWC/1UrEom7vvIt/b6Lp28fxlIY+p2AqBp9fNWPbwHYP3cMJS1/BPnRn2ik71nmUFNWR0VWa3lSqYDs87zRHNZDQIDAQAB"
   # - dnsName: teapot.ovh
   #   recordTTL: 300
   #   recordType: TXT
