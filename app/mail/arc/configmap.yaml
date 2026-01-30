@@ -7,7 +7,10 @@ data:
     Syslog yes
     Mode sv
 
+    Socket inet:8893@0.0.0.0
+    InternalHosts 10.42.0.0/16, 100.64.0.0/16
     AuthservID smtp.teapot.ovh
+
     Domain smtp.teapot.ovh
     KeyFile /etc/openarc/keys/smtp.teapot.ovh.30012026.key
     Selector 30012026

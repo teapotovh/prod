@@ -5,5 +5,5 @@ metadata:
 spec:
   ports:
   - protocol: TCP
-    port: 8891
+    port: 8893
     targetPort: milter

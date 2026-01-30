@@ -22,7 +22,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
         - name: openarc
-          image: ghcr.io/teapotovh/openarc:v0.0.9
+          image: ghcr.io/teapotovh/openarc:v0.0.10
           ports:
             - name: milter
               containerPort: 8893
