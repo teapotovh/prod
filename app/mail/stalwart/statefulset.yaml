@@ -26,7 +26,6 @@ spec:
                 operator: NotIn
                 values:
                 - kube02.prod.infra.teapot.ovh
-                - kube04.prod.infra.teapot.ovh
 
       containers:
       - name: stalwart
