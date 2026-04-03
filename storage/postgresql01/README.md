@@ -20,7 +20,7 @@ spec:
 
 To get the encrypted username/password:
 ```
-$ echo -n <password> | kubeseal --raw --namespace apps --scope namespace-wide
+$ echo -n <password> | kubeseal --raw --namespace storage --scope namespace-wide
 ```
 
 Then, add the relative role to `cluster.yaml`.

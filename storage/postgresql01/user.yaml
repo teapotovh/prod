@@ -42,3 +42,16 @@ spec:
   template:
     data:
       username: vaultwarden
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: user-dex
+  annotations:
+    sealedsecrets.bitnami.com/namespace-wide: "true"
+spec:
+  encryptedData:
+    password: AgCDrOidsIbCHm5ufdu/2i6nPQLrf0psJDd/Tx0lHO4vp1yrOUgDJdnvZL3q/SnwMtUVXfsMzwxc6fux8X1vFv+yT8aKJOezZNhUruuT9EBd8vgXd8J3IqTL/yz/vuJgi+/Nz+NXLg4otew+cZDOGTL4i7896/heJf0VSA2k6o5AuQgbrD3sLWm04JmQc/uE41aNEGfWUb0n3DHx1tZPgHN3TbHU+d7HYA91dZUo4keAa5DHv0ltw9dAe2pamDV4H+2IISUKtnbI46YOok+DOdV6yidWxIJaCAbiMAYYz+zZDvE6i+t4zTOTRFUeqRbm7h8FfcS5U+TLNtvwGpR2nuYQAuVqrN3aacB6neAxFTkT9DkhmSUQygB1f4XXQS81yQszXzFfAAQxPtbBALx2IHCTfFHuUH+g+4IbLBWnTqR7teGjSzmWdh7b3NGE0jkElis6sebQFtOsZyJs+PosvuUKzzLsWdg3etQhdEs+b0WT4k+tfHwT+DdX758vakf2MAGE8vIYS9N3YW4o35LiWHo1PBc3bSA1l2jSui4BVy3vajlJTqETbd4fRLuDWFHHQHZcq/xYY/F1ssvu+mbTwPEcxRIDA/M4Q3KecKa0L7zSWLuaiZEpcvdjatUrmxxuLQk65qPX//XzVyrUTihwGpHXlt3qfz6hXQ/TjIWW4q4cMvPxScBJghT3YClCwCsLc1e929FA1YgPFdPsBbzltk9WIYkkpSAqtxVzX00KGiwbdA==
+  template:
+    data:
+      username: dex

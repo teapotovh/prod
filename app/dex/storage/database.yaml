@@ -1,0 +1,9 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: dex-database
+spec:
+  name: dex
+  owner: dex
+  cluster:
+    name: postgresql01-cluster
