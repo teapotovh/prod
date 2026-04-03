@@ -124,6 +124,7 @@ data:
         redirectURIs:
           - 'app.immich:///oauth-callback'
           - 'https://photos.teapot.ovh/auth/login'
+          - 'https://photos.teapot.ovh/api/oauth/mobile-redirect'
           - 'https://photos.teapot.ovh/user-settings'
         name: 'Immich app'
         secret: "{{ .Env.IMMICH_SECRET }}"
