@@ -12,3 +12,4 @@ resources:
 - reloader.yaml
 - cloudnative-pg.yaml
 - prometheus.yaml
+- garage.yaml
