@@ -54,13 +54,13 @@ data:
     [store.psql.pool]
     max-connections = 5
 
-    # [store.garage]
-    # type = "s3"
-    # region = "garage"
-    # endpoint = "http://garage01-garage.storage:3900"
-    # bucket = "stalwart"
-    # access-key = "%{env:S3_ID}%"
-    # secret-key = "%{env:S3_KEY}%"
+    [store.garage]
+    type = "s3"
+    region = "garage"
+    endpoint = "http://garage01-garage.storage:3900"
+    bucket = "stalwart"
+    access-key = "%{env:S3_ID}%"
+    secret-key = "%{env:S3_KEY}%"
 
     [directory."ldap"]
     type = "ldap"

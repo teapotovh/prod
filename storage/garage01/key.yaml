@@ -1,0 +1,17 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: key-stalwart
+  annotations:
+    sealedsecrets.bitnami.com/namespace-wide: "true"
+spec:
+  encryptedData:
+    id: AgBOsLMW+p03RozOuDKNQYkia89s650wOv2Krslh8h9hYv1KQv6b133MRQjoWhZvZoKpjrBcNyHx4w0QTyDMWxaFzcwzySg496jXTMTEoRsMKXo7vlvwbxM1eCssTdDmYnmXem+2WHrV0RucrJ6UmMaQEbp2Yv9/kTC4noXM+uABmEBJHpEuzR+1Uy0ofwwbIv9+5GZdMkiUwJwqtxrMTUdEq3KYhpUQhtNOzwNs+R21ud0kKTnOKoVCkcQZXTBdq5lHpKkGxJvUFyAFAW+aqQOQ6VGR767gysl70ZpTs4SzR70/L56leR01GSriSMSM5Xl4SZfhX/rGhl0/sgKzvnCq9P/xy9nc9Bal6Pk3a2Z7xoOF8Kno9v/JGRUQ40V+HVriG2Zl6tJmErtBdGrfEEcGST5bL4lJEuydUtUU5PGOPHxSWS76ElDzNSdlJkr+hA20Muo2spnx7nAnyEqV3JVi992TrG2PJpGIH3qIAVh/RJhGHCJ+d1Rb/7WFxapPjcy5OZL2qd0rmccjRtPlLpjcIHFO9gi5Zu6c0t4o4R6A7H1H3uTXcI3lZyLo/MaKdXt4+nqU703Kafkpo6EDJAzzvxAT09kORCvLoBDndZzxDpchhsGnTnJ/oNa/X7NHEmKpW4uS720kB2PObVf6h5xMui7ur8VyCzfeWjZPCejYVzGPqDtWTw9Bk43YZ9R75uQPK7J1CnkayDxmPd5AedP4egnZX2EClIndoQ==
+    key: AgCOscQRIfFExDNMPzq/rlNoyHyNVBTypWeCFDxuPSO6TGnv7Ewmnd5tDJJDZaf2Sb20J76LsOj9ENYMMz28ZwcHGqmwTgUsq1EvUz0fn/Tmol4IT0g/pkXtnzBlAa4BU0TK4VAbLTS2/aHpzQ3scHv4rdkOEgTAZz31Qq031Y/v58voJ+7hQ/u39v8oLpx3NSvLV7swEyMPMveAqHlQsWEhj4WXs6j4z6n9Gl/S6oC3rGjIbJ3NvcE2SWAKnus2bRNlCNU0s+3EVVPbgjywnmbXzSfS6W5v7TFQcX/oWUZoDchbtLbpnImncZlYi1WW55SNA6plv4mRDKwm/r3ZBr1vUEhyGv+2fj22Ve+ztcrS72j55RT4KN/pUa7Fs7e6fL37zsJjFbtHbKq3n7KBuM/tqPy8ggor3L0wZOgHG9yf4pF/aZYFQjrPG+IntZuiUgiJku9UaCNIvnbv6ZaqgSX3H4KDeqybQxMdflS3zPCImOM9vYiVlKDQmijc/ryhl0LPFIiLugKXl0igxUKvoxtwJzZojDAw+5onorS1JQc4NB7PRD58ehmjSPiN7uK9cEcp2wywkFih0fP20gdcJUd9U1H8j/udOLhOQRQlUNk1GFt2FewklWRf407KxzzbKgZIZt8pwJHVd8u5qsUq3ABdhMS/u2fbUkEsi5KEIL40CDFNxWxdAWx4dZ/eGPzG7OUPtBtv+YO7bxeRDu2e6DZyzr//sTAWXbw8KkTNrH0Fe4XNwmAYiH9EvObYMuDi9FZTe7Qkct0QIw7sWuSmNvaB
+  template:
+    metadata:
+      annotations:
+        reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "app"
+        reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "app"

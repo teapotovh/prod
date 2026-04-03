@@ -83,16 +83,16 @@ spec:
             secretKeyRef:
               name: postgresql01-user-mail
               key: password
-        # - name: S3_ID
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: apps-mail-s3-secret
-        #       key: id
-        # - name: S3_KEY
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: apps-mail-s3-secret
-        #       key: key
+        - name: S3_ID
+          valueFrom:
+            secretKeyRef:
+              name: garage01-key-stalwart
+              key: id
+        - name: S3_KEY
+          valueFrom:
+            secretKeyRef:
+              name: garage01-key-stalwart
+              key: key
       volumes:
       - name: config
         configMap:
