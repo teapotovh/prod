@@ -26,8 +26,10 @@ spec:
         # Copies garage.toml from configmap to temporary etc volume and replaces RPC secret placeholder
         - name: garage-init
           image: mirror.gcr.io/dibi/envsubst
-          command: |
-            envsubst < /mnt/garage.toml > /mnt/etc/garage.toml
+          command:
+            - sh
+            - -c
+            - envsubst < /mnt/garage.toml > /mnt/etc/garage.toml
           env:
             - name: RPC_SECRET
               valueFrom:
