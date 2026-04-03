@@ -6,6 +6,9 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
+  selector:
+    matchLabels:
+      domain: teapot.ovh
   template:
     metadata:
       labels:
@@ -106,6 +109,9 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
+  selector:
+    matchLabels:
+      domain: cappuccino.ovh
   template:
     metadata:
       labels:
