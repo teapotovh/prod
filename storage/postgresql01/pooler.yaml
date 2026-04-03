@@ -19,7 +19,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchLabels:
-                cnpg.io/cluster: postgresql01-cluster
+                cnpg.io/poolerName: postgresql01-pooler
             topologyKey: kubernetes.io/hostname
       containers:
       - name: pgbouncer
