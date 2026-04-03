@@ -1,4 +1,4 @@
-namespace: app
+namespace: storage
 namePrefix: dex-
 
 labels:
@@ -10,7 +10,4 @@ labels:
       app.kubernetes.io/managed-by: kustomize
 
 resources:
-  - configmap.yaml
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml
+  - database.yaml
