@@ -9,8 +9,6 @@ labels:
     app.kubernetes.io/part-of: garage01
 
 resources:
-- serviceaccount.yaml
-- rbac.yaml
 - secret.yaml
 - configmap.yaml
 - statefulset.yaml
