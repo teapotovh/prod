@@ -35,7 +35,7 @@ data:
 
       type: postgres
       config:
-        host: apps-pg-small-pooler
+        host: postgresql01-pooler.storage
         port: 5432
         database: dex
         user: "{{ .Env.DB_USERNAME }}"
