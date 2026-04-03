@@ -4,4 +4,5 @@ resources:
 - storage.yaml
 
 - postgresql01.yaml
+- garage01.yaml
 - bottin.yaml
