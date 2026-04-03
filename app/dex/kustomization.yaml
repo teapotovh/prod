@@ -10,7 +10,7 @@ labels:
       app.kubernetes.io/managed-by: kustomize
 
 resources:
-  - database.yaml
+  - storage
   - configmap.yaml
   - deployment.yaml
   - service.yaml
