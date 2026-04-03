@@ -65,4 +65,4 @@ spec:
           - pg_monitor
           - pg_signal_backend
         passwordSecret:
-          name: postgresql01-user-vaultwarden
+          name: postgresql01-user-dex
