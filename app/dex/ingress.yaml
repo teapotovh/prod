@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: server
   annotations:
-    cert-manager.io/cluster-issuer: "cert-manager-letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/server-snippet: |
       location = /healthz { return 403; }
       location ^~ /healthz/ { return 403; }
 spec:
   tls:
-    - secretName: teapot-prod-oauth-tls
+    - secretName: dex-oauth-tls
       hosts:
         - oauth.teapot.ovh
   rules:
