@@ -37,7 +37,7 @@ data:
     data = "psql"
     fts = "psql"
     lookup = "psql"
-    blob = "psql"
+    blob = "garage"
     directory = "ldap"
 
     [store.psql]
