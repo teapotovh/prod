@@ -1,7 +1,8 @@
 namespace: flux
 
 resources:
-- app.yaml
+  - app.yaml
 
-- sendmail.yaml
-- mail.yaml
+  - sendmail.yaml
+  - mail.yaml
+  - dex.yaml
