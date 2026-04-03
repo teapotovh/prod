@@ -10,7 +10,7 @@ spec:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
-                matchLabels:
+                matchLabels: {}
               topologyKey: kubernetes.io/hostname
       containers:
         - name: dex
