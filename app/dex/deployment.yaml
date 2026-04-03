@@ -28,15 +28,28 @@ spec:
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  namespace: storage
                   name: postgresql01-user-dex
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  namespace: storage
                   name: postgresql01-user-dex
                   key: password
+            - name: LDAP_BIND_DN
+              valueFrom:
+                secretKeyRef:
+                  name: bottin-admin
+                  key: username
+            - name: LDAP_BIND_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bottin-admin
+                  key: password
+            - name: IMMICH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: dex-secrets
+                  key: immich
           livenessProbe:
             httpGet:
               path: /healthz

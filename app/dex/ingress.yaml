@@ -9,7 +9,7 @@ metadata:
       location ^~ /healthz/ { return 403; }
 spec:
   tls:
-    - secretName: dex-oauth-tls
+    - secretName: dex-tls
       hosts:
         - oauth.teapot.ovh
   rules:
