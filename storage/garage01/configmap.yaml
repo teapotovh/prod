@@ -22,8 +22,8 @@ data:
     bootstrap_peers = []
 
     [kubernetes_discovery]
-    namespace = "garage-system"
-    service_name = "garage"
+    namespace = "storage"
+    service_name = "garage01-garage"
     skip_crd = true
 
     [s3_api]
