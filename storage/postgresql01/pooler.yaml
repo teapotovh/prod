@@ -18,7 +18,8 @@ spec:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
-              matchLabels: {}
+              matchLabels:
+                cnpg.io/cluster: postgresql01-cluster
             topologyKey: kubernetes.io/hostname
       containers:
       - name: pgbouncer
