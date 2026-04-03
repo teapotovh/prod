@@ -26,33 +26,43 @@ spec:
       memory: 2Gi
   managed:
     roles:
-    - name: bottin
-      ensure: present
-      comment: Access user for the bottin db
-      login: true
-      superuser: false
-      inRoles:
-        - pg_monitor
-        - pg_signal_backend
-      passwordSecret:
-        name: postgresql01-user-bottin
-    - name: mail
-      ensure: present
-      comment: Access user for the mail db
-      login: true
-      superuser: false
-      inRoles:
-        - pg_monitor
-        - pg_signal_backend
-      passwordSecret:
-        name: postgresql01-user-mail
-    - name: vaultwarden
-      ensure: present
-      comment: Access user for the vaultwarden db
-      login: true
-      superuser: false
-      inRoles:
-        - pg_monitor
-        - pg_signal_backend
-      passwordSecret:
-        name: postgresql01-user-vaultwarden
+      - name: bottin
+        ensure: present
+        comment: Access user for the bottin db
+        login: true
+        superuser: false
+        inRoles:
+          - pg_monitor
+          - pg_signal_backend
+        passwordSecret:
+          name: postgresql01-user-bottin
+      - name: mail
+        ensure: present
+        comment: Access user for the mail db
+        login: true
+        superuser: false
+        inRoles:
+          - pg_monitor
+          - pg_signal_backend
+        passwordSecret:
+          name: postgresql01-user-mail
+      - name: vaultwarden
+        ensure: present
+        comment: Access user for the vaultwarden db
+        login: true
+        superuser: false
+        inRoles:
+          - pg_monitor
+          - pg_signal_backend
+        passwordSecret:
+          name: postgresql01-user-vaultwarden
+      - name: dex
+        ensure: present
+        comment: Access user for the dex db
+        login: true
+        superuser: false
+        inRoles:
+          - pg_monitor
+          - pg_signal_backend
+        passwordSecret:
+          name: postgresql01-user-vaultwarden
