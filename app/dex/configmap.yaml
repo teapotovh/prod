@@ -55,7 +55,7 @@ data:
 
     # HTTP service configuration
     web:
-      http: 0.0.0.0:80
+      http: 0.0.0.0:8080
 
       # Uncomment to enable HTTPS endpoint.
       # https: 127.0.0.1:5554

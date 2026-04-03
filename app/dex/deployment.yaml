@@ -18,7 +18,8 @@ spec:
           image: ghcr.io/dexidp/dex:latest
           imagePullPolicy: Always # Not the best thing to run in production
           ports:
-            - containerPort: 389
+            - name: http
+              containerPort: 8080
           volumeMounts:
             - name: config
               mountPath: /etc/dex/config.docker.yaml

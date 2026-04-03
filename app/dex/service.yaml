@@ -5,6 +5,7 @@ metadata:
 spec:
   internalTrafficPolicy: Local
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+    - name: http
+      protocol: TCP
+      targetPort: http
+      port: 8080
