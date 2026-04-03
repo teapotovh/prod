@@ -5,8 +5,8 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
-  # TODO: raise back to 3
-  replicas: 2
+  # TODO: raise back to 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -33,8 +33,8 @@ spec:
               - key: kubernetes.io/hostname
                 operator: NotIn
                 values:
-                - kube02.prod.infra.teapot.ovh
-
+                - kube02.prod.infra.teapot.ovh # (rn01) already running an SMTP server
+                - kube03.prod.infra.teapot.ovh # (bo01) blacklisted
       initContainers:
       - name: configure-postfix
         image: mirror.gcr.io/dibi/envsubst
