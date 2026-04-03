@@ -8,6 +8,7 @@ spec:
   prune: true
   dependsOn:
     - name: storage
+    - name: garage
   sourceRef:
     kind: GitRepository
     name: prod
