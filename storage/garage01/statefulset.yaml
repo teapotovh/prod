@@ -8,6 +8,7 @@ spec:
   podManagementPolicy: OrderedReady
   template:
     spec:
+      serviceAccountName: serviceaccount
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
