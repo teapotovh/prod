@@ -23,6 +23,7 @@ spec:
   dependsOn:
     - name: app
     - name: mail-storage
+    - name: garage01
   sourceRef:
     kind: GitRepository
     name: prod
