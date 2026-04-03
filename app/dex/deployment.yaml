@@ -5,6 +5,11 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   replicas: 3
   template:
     spec:
