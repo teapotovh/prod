@@ -8,6 +8,12 @@ spec:
   podManagementPolicy: OrderedReady
   template:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
       serviceAccountName: serviceaccount
       securityContext:
         fsGroup: 1000
