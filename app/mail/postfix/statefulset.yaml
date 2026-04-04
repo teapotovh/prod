@@ -90,7 +90,7 @@ spec:
 
       containers:
         - name: postfix
-          image: ghcr.io/teapotovh/postfix:v0.0.13
+          image: ghcr.io/teapotovh/postfix:v0.0.14
           ports:
             - name: smtp
               containerPort: 25
