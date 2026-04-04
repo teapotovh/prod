@@ -60,6 +60,7 @@ data:
     scache    unix  -       -       n       -       1       scache
 
   "main.cf.tmpl": |
+    compatibility_level = 3.6
     debug_peer_level = 3
     append_dot_mydomain = no
     delay_warning_time = 10m
