@@ -25,7 +25,7 @@ spec:
           - labelSelector:
               matchLabels: {}
             topologyKey: kubernetes.io/hostname
-        # TODO: remove when we actually go into prod
+
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
@@ -90,7 +90,7 @@ spec:
 
       containers:
         - name: postfix
-          image: mirror.gcr.io/instrumentisto/postfix:3.1-alpine
+          image: ghcr.io/teapotovh/postfix:v0.0.11
           ports:
             - name: smtp
               containerPort: 25
