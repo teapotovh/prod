@@ -65,7 +65,6 @@ data:
     append_dot_mydomain = no
     delay_warning_time = 10m
     biff = no
-    compatibility_level = 3
     strict_rfc821_envelopes = yes
     show_user_unknown_table_name = no
     disable_vrfy_command = yes
@@ -113,7 +112,7 @@ data:
 
     smtp_tls_security_level = may
     smtp_tls_note_starttls_offer = yes
-    smtp_tls_session_cache_database = btree:${${escape}data_directory}/smtp_scache
+    smtp_tls_session_cache_database = lmdb:${${escape}data_directory}/smtp_scache
 
     smtpd_tls_security_level = encrypt
     smtpd_tls_auth_only = yes
@@ -183,7 +182,7 @@ data:
   "syslog.conf": |
     mail.* /var/log/postfix/mail.log
     mail.* /dev/stdout
-  "smtpd.conf.tmpl": |
+  "saslauthd.conf.tmpl": |
     pwcheck_method: auxprop
     auxprop_plugin: ldap
     ldap_servers: ldap://bottin-server.storage:389

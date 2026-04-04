@@ -70,7 +70,7 @@ spec:
           mountPath: /etc/postfix
       - name: configure-sasl
         image: mirror.gcr.io/dibi/envsubst
-        command: ["sh", "-c", "envsubst < /template/smtpd.conf.tmpl > /sasl/smtpd.conf"]
+        command: ["sh", "-c", "envsubst < /template/saslauthd.conf.tmpl > /sasl/saslauthd.conf"]
         env:
           - name: LDAP_BIND_DN
             valueFrom:
@@ -90,7 +90,7 @@ spec:
 
       containers:
         - name: postfix
-          image: ghcr.io/teapotovh/postfix:v0.0.12
+          image: ghcr.io/teapotovh/postfix:v0.0.13
           ports:
             - name: smtp
               containerPort: 25
@@ -104,7 +104,8 @@ spec:
               subPath: syslog.conf
               readOnly: true
             - name: sasl
-              mountPath: /etc/postfix/sasl
+              mountPath: /etc/saslauthd.conf
+              key: saslauthd.conf
               readOnly: true
             - name: config
               mountPath: /etc/postfix/master.cf
