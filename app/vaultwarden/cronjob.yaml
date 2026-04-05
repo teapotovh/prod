@@ -16,7 +16,7 @@ spec:
               image: mirror.gcr.io/vividboarder/vaultwarden_ldap:2.2
               env:
                 - name: APP_VAULTWARDEN_URL
-                  value: "http://vaultwarden-server"
+                  value: "http://vaultwarden-server:8080"
                 - name: APP_VAULTWARDEN_ADMIN_TOKEN
                   valueFrom:
                     secretKeyRef:
