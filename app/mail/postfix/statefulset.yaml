@@ -68,29 +68,9 @@ spec:
           mountPath: /template
         - name: config
           mountPath: /etc/postfix
-      - name: configure-sasl
-        image: mirror.gcr.io/dibi/envsubst
-        command: ["sh", "-c", "envsubst < /template/saslauthd.conf.tmpl > /sasl/saslauthd.conf"]
-        env:
-          - name: LDAP_BIND_DN
-            valueFrom:
-              secretKeyRef:
-                name: bottin-admin
-                key: username
-          - name: LDAP_BIND_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: bottin-admin
-                key: password
-        volumeMounts:
-        - name: other-config
-          mountPath: /template
-        - name: sasl
-          mountPath: /sasl
-
       containers:
         - name: postfix
-          image: ghcr.io/teapotovh/postfix:v0.0.14
+          image: ghcr.io/teapotovh/postfix:v0.0.15
           ports:
             - name: smtp
               containerPort: 25
@@ -103,9 +83,8 @@ spec:
               mountPath: /etc/syslog.conf
               subPath: syslog.conf
               readOnly: true
-            - name: sasl
+            - name: other-config
               mountPath: /etc/saslauthd.conf
-              key: saslauthd.conf
               readOnly: true
             - name: config
               mountPath: /etc/postfix/master.cf
@@ -126,6 +105,10 @@ spec:
             - name: config
               mountPath: /etc/postfix/ldap_sender_map.cf
               subPath: ldap_sender_map.cf
+              readOnly: true
+            - name: config
+              mountPath: /etc/postfix/sasl/smtpd.conf
+              subPath: smtpd.conf
               readOnly: true
             - name: logs
               mountPath: /var/log/postfix
@@ -164,8 +147,6 @@ spec:
           configMap:
             name: other-config
         - name: config
-          emptyDir: {}
-        - name: sasl
           emptyDir: {}
         - name: logs
           emptyDir: {}

@@ -121,7 +121,7 @@ data:
     tls_random_source = dev:/dev/urandom
     smtpd_tls_cert_file = /etc/postfix/tls/tls.crt
     smtpd_tls_key_file  = /etc/postfix/tls/tls.key
-    smtpd_use_tls = yes
+    smtpd_tls_security_level = may
 
 
     smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3
@@ -173,6 +173,11 @@ data:
     scope = sub
     query_filter = (|(mail=%s)(mailAlternateAddress=%s))
     result_attribute = cn
+
+  "smtpd.conf": |
+    pwcheck_method: saslauthd
+    mech_list: PLAIN LOGIN
+    saslauthd_path: /var/run/saslauthd/mux
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -182,13 +187,7 @@ data:
   "syslog.conf": |
     mail.* /var/log/postfix/mail.log
     mail.* /dev/stdout
-  "saslauthd.conf.tmpl": |
-    pwcheck_method: auxprop
-    auxprop_plugin: ldap
+  "saslauthd.conf": |
     ldap_servers: ldap://bottin-server.storage:389
-    ldap_search_base: ou=users,dc=teapot,dc=ovh
-    ldap_filter: (cn=%u)
-    ldap_bind_dn: ${LDAP_BIND_DN}
-    ldap_bind_pw: ${LDAP_BIND_PASSWORD}
-    ldap_auth_method: bind
-    mech_list: PLAIN LOGIN
+    ldap_auth_method: fastbind
+    ldap_filter: cn=%u,ou=users,dc=teapot,dc=ovh
