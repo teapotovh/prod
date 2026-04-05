@@ -7,6 +7,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            role: cronjob
         spec:
           containers:
             - name: vaultwarden-ldap

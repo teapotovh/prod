@@ -18,6 +18,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels: {}
+                matchExpressions:
+                  - key: role
+                    operator: NotIn
+                    values: [cronjob]
               topologyKey: kubernetes.io/hostname
       containers:
         - name: vaultwarden
