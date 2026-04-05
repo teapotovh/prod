@@ -85,6 +85,7 @@ spec:
               readOnly: true
             - name: other-config
               mountPath: /etc/saslauthd.conf
+              subPath: saslauthd.conf
               readOnly: true
             - name: config
               mountPath: /etc/postfix/master.cf
