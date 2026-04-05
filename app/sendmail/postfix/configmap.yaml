@@ -27,8 +27,8 @@ data:
     milter_default_action = reject
     smtpd_milters = inet:sendmail-dkim-server:8891
     non_smtpd_milters = $smtpd_milters
-    sender_canonical_classes = envelope_sender
-    sender_canonical_maps = static:sendmail@teapot.ovh
+    bounce_notice_recipient = sendmail@teapot.ovh
+    2bounce_notice_recipient = sendmail@teapot.ovh
     header_checks = regexp:/etc/postfix/header_checks
     always_add_missing_headers = yes
 
