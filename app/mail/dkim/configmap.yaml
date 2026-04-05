@@ -6,6 +6,7 @@ data:
   "opendkim.conf": |
     Syslog yes
     SyslogSuccess yes
+    LogWhy yes
 
     Mode sv
     Socket inet:8891@0.0.0.0
@@ -13,7 +14,7 @@ data:
     AuthservID smtp.teapot.ovh
 
     KeyTable      /etc/opendkim/KeyTable
-    SigningTable  /etc/opendkim/SigningTable
+    SigningTable  refile:/etc/opendkim/SigningTable
     RequireSafeKeys no
 
     Canonicalization relaxed/simple

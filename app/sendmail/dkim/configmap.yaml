@@ -6,6 +6,7 @@ data:
   "opendkim.conf": |
     Syslog yes
     SyslogSuccess yes
+    LogWhy yes
 
     Mode s
     Socket inet:8891@0.0.0.0
