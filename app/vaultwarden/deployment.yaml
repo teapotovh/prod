@@ -50,7 +50,7 @@ spec:
                   name: postgresql01-user-vaultwarden
                   key: password
             - name: DATABASE_URL
-              value: postgresql://$(DB_USERNAME):$(DB_PASSWORD)@postresql01-pooler/vaultwarden
+              value: postgresql://$(DB_USERNAME):$(DB_PASSWORD)@postgresql01-pooler.storage/vaultwarden
             - name: PUSH_INSTALLATION_ID
               valueFrom:
                 secretKeyRef:
