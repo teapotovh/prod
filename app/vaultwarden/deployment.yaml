@@ -66,6 +66,9 @@ spec:
                 secretKeyRef:
                   name: vaultwarden-admin
                   key: token
+            - name: ROCKET_PORT
+              value: "8080"
+
           livenessProbe:
             httpGet:
               path: /alive
