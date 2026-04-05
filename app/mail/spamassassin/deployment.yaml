@@ -28,13 +28,6 @@ spec:
           mountPath: /tmpl
         - name: config
           mountPath: /etc/mail/spamassassin
-        resources:
-          requests:
-            cpu: 50m
-            memory: 256Mi
-          limits:
-            cpu: 100m
-            memory: 512Mi
 
       containers:
       - name: spamassassin
@@ -56,6 +49,13 @@ spec:
         - name: config
           mountPath: /etc/mail/spamassassin/local.cf
           subPath: local.cf
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
+          limits:
+            cpu: 100m
+            memory: 512Mi
       volumes:
       - name: template
         configMap:

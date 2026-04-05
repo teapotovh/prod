@@ -63,7 +63,7 @@ data:
     compatibility_level = 3.9
     debug_peer_level = 3
     append_dot_mydomain = no
-    delay_warning_time = 10m
+    delay_warning_time = 1h
     biff = no
     strict_rfc821_envelopes = yes
     show_user_unknown_table_name = no
