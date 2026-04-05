@@ -13,9 +13,9 @@ spec:
   tls:
     - secretName: vaultwarden-tls
       hosts:
-        - vvault.teapot.ovh
+        - vault.teapot.ovh
   rules:
-    - host: vvault.teapot.ovh
+    - host: vault.teapot.ovh
       http:
         paths:
           - path: /
