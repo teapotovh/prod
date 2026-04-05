@@ -6,3 +6,4 @@ resources:
   - sendmail.yaml
   - mail.yaml
   - dex.yaml
+  - vaultwarden.yaml

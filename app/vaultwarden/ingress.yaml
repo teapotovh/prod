@@ -3,24 +3,25 @@ kind: Ingress
 metadata:
   name: server
   annotations:
-    cert-manager.io/cluster-issuer: "cert-manager-letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/server-snippet: |
-      location ^~ /admin {
-        return 403;
-      }
+      location = /healthz { return 403; }
+      location ^~ /healthz/ { return 403; }
+      location = /admin { return 403; }
+      location ^~ /admin/ { return 403; }
 spec:
   tls:
-  - secretName: teapot-prod-vault-tls
-    hosts:
-    - vault.prod.teapot.ovh
+    - secretName: vaultwarden-tls
+      hosts:
+        - vvault.teapot.ovh
   rules:
-  - host: vault.prod.teapot.ovh
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: server
-            port:
-              number: 80
+    - host: vvault.teapot.ovh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: server
+                port:
+                  name: http

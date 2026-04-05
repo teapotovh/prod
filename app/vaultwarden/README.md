@@ -3,14 +3,14 @@
 ## RSA Key
 
 Vaultwarden uses an RSA key to do some encryption. That must be placed in a
-seret named `rsa-key` in the `apps` namespaces.
+seret named `rsa-key` in the `app` namespaces.
 
 The key can be created using: `openssl genrsa -out rsa_key.pem 2048`. Do not
 set any password on it.
 
 Then, the value for the sealed secret can be encrypted by:
 ```
-$ cat rsa_key.pem | kubeseal --raw --namespace apps --scope namespace-wide
+$ cat rsa_key.pem | kubeseal --raw --namespace app --scope namespace-wide
 ```
 
 See the first RD in `secret.yaml` for this definition.
@@ -36,5 +36,5 @@ spec:
 
 You can encrypt the data as follows:
 ```
-$ echo -n "<id>" | kubeseal --raw --namespace apps --scope namespace-wide
+$ echo -n "<id>" | kubeseal --raw --namespace app --scope namespace-wide
 ```

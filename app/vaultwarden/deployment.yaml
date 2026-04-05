@@ -2,16 +2,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: server
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   replicas: 3
   template:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels: {}
+              topologyKey: kubernetes.io/hostname
       containers:
         - name: vaultwarden
-          image: ghcr.io/dani-garcia/vaultwarden:1.35.1-alpine
+          image: ghcr.io/dani-garcia/vaultwarden:1.35.4-alpine
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
           volumeMounts:
             - name: config
               mountPath: /.env
@@ -56,7 +69,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /alive
-              port: 80
+              port: 8080
             initialDelaySeconds: 5
             periodSeconds: 30
       volumes:

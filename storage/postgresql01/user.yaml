@@ -40,6 +40,12 @@ spec:
   encryptedData:
     password: AgAvzaoAjwDBpR9aLdKYE5ASyIZr5OI0Ibr5gIf5jzaaK+irDZhDsR0vBtVNCMgxjNj3QRUk+O8EdOGF1b38uYnkwsF22XKuwf+2LNOSgnU3MA97ZH8ROujSTV3mOPj0ch3zHYmPgvVT4mgTFZHZPtmSW1WX0lfP/oZ4T9UULkuw3oIOGZ6YsuNaIQAC3PWa1OU1fmRCJp2feDGtzj3LRUNucO7s2bp7oLJsBZDHfH1JA1C/v8WJLm8Eac289I6Qx/qEy5x7Zd3lBpjg4wS7OZuJF69xyylfA8URzjHSEQTROg29JvRPE4PUHLBX+UOldBP24+/VVc/XGnW/zJMoTYomSwDC++ubGkknxwh5+x7wmg8kdnUB4iQ5KnPnAnDCWnRXuZw16JKV5jH0a6GOxLRZATsF0q53i9Ty4jDVIK213+SJHkTNEi6ifowKS4YNKwp/rmGYNzYveu3wQTZ7JOVYkxUJwOZDKqUZLX/B08ExUJJK7MRChnLKTk8K4IYooiJPuP5ChrUz1jQKGPmZLEY+Srk6qKP6JSa69QcR1LFzQtRYkO75mqPRG/00blp3jthLqeQFABgFH2aXClimDzfcwafkSPC2KBOXyS7DG4sCITbV8HmHmOaUj7w4Fp3h5NBjzbpcaZXKfM1T0HzRVtQdSZJE5cEEdyNEYf7rYiJXFJ2fogBfRJNMkR5R9L/SoSO10SVu+6o2LaLrgVhqIoGieICZXkQLZ8NosGp8XcQa0w==
   template:
+    metadata:
+      annotations:
+        reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "app"
+        reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "app"
     data:
       username: vaultwarden
 ---
