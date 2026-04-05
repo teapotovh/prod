@@ -108,7 +108,7 @@ spec:
               subPath: ldap_sender_map.cf
               readOnly: true
             - name: config
-              mountPath: /etc/postfix/sasl/smtpd.conf
+              mountPath: /usr/lib/sasl2/smtpd.conf
               subPath: smtpd.conf
               readOnly: true
             - name: logs
