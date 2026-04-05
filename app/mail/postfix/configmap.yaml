@@ -74,6 +74,7 @@ data:
     queue_directory = /var/spool/postfix
     recipient_delimiter = +-
     myhostname = smtp.teapot.ovh
+    mailer_daemon_address = MAILER-DAEMON@teapot.ovh
 
     smtpd_banner = $${escape}myhostname ESMTP $${escape}mail_name (${HOSTNAME})
     smtp_helo_name = $${escape}myhostname
