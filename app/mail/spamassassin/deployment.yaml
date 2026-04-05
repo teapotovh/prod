@@ -5,8 +5,7 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
-  # TODO: scale back up to 3
-  replicas: 1
+  replicas: 3
   template:
     spec:
       initContainers:
@@ -29,6 +28,13 @@ spec:
           mountPath: /tmpl
         - name: config
           mountPath: /etc/mail/spamassassin
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
+          limits:
+            cpu: 100m
+            memory: 512Mi
 
       containers:
       - name: spamassassin
