@@ -15,29 +15,29 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port:   '9154'
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9154"
     spec:
       terminationGracePeriodSeconds: 30
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchLabels: {}
-            topologyKey: kubernetes.io/hostname
+            - labelSelector:
+                matchLabels: {}
+              topologyKey: kubernetes.io/hostname
         # TODO: remove when smtp is enabled on kube04
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: NotIn
-                values:
-                - kube03.prod.infra.teapot.ovh
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: NotIn
+                    values:
+                      - kube03.prod.infra.teapot.ovh
 
       containers:
         - name: postfix
-          image: mirror.gcr.io/instrumentisto/postfix:3.1-alpine
+          image: ghcr.io/teapotovh/postfix:v0.0.15
           ports:
             - name: smtp
               containerPort: 25
@@ -95,7 +95,7 @@ spec:
     - metadata:
         name: spool
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ["ReadWriteOnce"]
         storageClassName: "local-path-storageclass"
         resources:
           requests:
