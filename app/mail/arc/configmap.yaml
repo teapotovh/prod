@@ -5,8 +5,8 @@ metadata:
 data:
   "openarc.conf": |
     Syslog yes
-    Mode sv
 
+    Mode sv
     Socket inet:8893@0.0.0.0
     AuthservID smtp.teapot.ovh
 

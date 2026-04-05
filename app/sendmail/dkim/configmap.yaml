@@ -7,6 +7,7 @@ data:
     Syslog yes
     SyslogSuccess yes
 
+    Mode s
     Socket inet:8891@0.0.0.0
     InternalHosts 10.42.0.0/16, 100.64.0.0/16
 
