@@ -31,7 +31,7 @@ spec:
 
       containers:
       - name: spamassassin
-        image: ghcr.io/teapotovh/spamassassin:v0.0.14
+        image: ghcr.io/teapotovh/spamassassin:v0.0.16
         ports:
         - name: spamd
           containerPort: 783
