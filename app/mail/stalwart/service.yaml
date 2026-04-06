@@ -20,8 +20,6 @@ kind: Service
 metadata:
   name: lmtp
 spec:
-  # TODO: add back when scale set to 3
-  # internalTrafficPolicy: Local
   ports:
     - name: lmtp
       port: 24

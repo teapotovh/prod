@@ -156,7 +156,6 @@ data:
     ## This still serves existing icons from $ICON_CACHE_FOLDER, without generating any external
     ## network requests. $ICON_CACHE_TTL must also be set to 0; otherwise, the existing icons
     ## will be deleted eventually, but won't be downloaded again.
-    # TODO: set to false when we monut longhorn
     DISABLE_ICON_DOWNLOAD=true
     ## Controls if new users can register
     SIGNUPS_ALLOWED=false
