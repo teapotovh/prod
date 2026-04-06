@@ -39,7 +39,7 @@ spec:
           containerPort: 10017
         readinessProbe:
           exec:
-            command: ["spamc", "-K"]
+            command: ["spamc", "-4", "-K"]
           initialDelaySeconds: 10 
           periodSeconds: 30
           timeoutSeconds: 5
