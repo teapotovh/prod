@@ -48,7 +48,9 @@ spec:
             - --source=crd
             - --source=ingress
             - --source=service
+            # - --provider=webhook
             - --provider=ovh
+            - --webhook-provider-url=http://127.0.0.1:8145
             - --domain-filter=teapot.ovh
             - --txt-owner-id=prod
             - --managed-record-types=A
@@ -96,6 +98,60 @@ spec:
             httpGet:
               path: /healthz
               port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+        - name: desecd
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+          image: ttl.sh/teapotovh_desecd:1h
+          imagePullPolicy: Always
+          args:
+            - --httplog-level=info
+            - --log-level=debug
+            - --desec-token=$(DESEC_TOKEN)
+          env:
+          - name: DESEC_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-desec-credentials-teapot.ovh
+                key: token
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 8145
+            - name: observability
+              protocol: TCP
+              containerPort: 8146
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            failureThreshold: 2
+            httpGet:
+              path: /livez
+              port: observability
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          startupProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /readyz
+              port: observability
             initialDelaySeconds: 5
             periodSeconds: 10
             successThreshold: 1
