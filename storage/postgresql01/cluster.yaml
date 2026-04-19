@@ -66,3 +66,13 @@ spec:
           - pg_signal_backend
         passwordSecret:
           name: postgresql01-user-dex
+      - name: radicale
+        ensure: present
+        comment: Access user for the radicale db
+        login: true
+        superuser: false
+        inRoles:
+          - pg_monitor
+          - pg_signal_backend
+        passwordSecret:
+          name: postgresql01-user-radicale
