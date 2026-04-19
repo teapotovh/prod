@@ -7,3 +7,4 @@ resources:
   - mail.yaml
   - dex.yaml
   - vaultwarden.yaml
+  - radicale.yaml
