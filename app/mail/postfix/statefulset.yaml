@@ -42,7 +42,6 @@ spec:
           - sh
           - -c
           - |
-            mkdir -p /etc/postfix
             for f in /template/*; do
               [ -f "$f" ] || continue
               base=$(basename "$f")
