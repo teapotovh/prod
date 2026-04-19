@@ -11,9 +11,9 @@ spec:
   tls:
     - secretName: radicale-tls
       hosts:
-        - calendar.prod.teapot.ovh
+        - calendar.teapot.ovh
   rules:
-    - host: calendar.prod.teapot.ovh
+    - host: calendar.teapot.ovh
       http:
         paths:
           - path: /
