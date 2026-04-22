@@ -259,6 +259,7 @@ spec:
           args:
             - --httplog-level=info
             - --log-level=debug
+            - --desec-domain=teapot.ovh
             - --desec-token=$(DESEC_TOKEN)
           env:
           - name: DESEC_TOKEN
