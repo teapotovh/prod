@@ -157,148 +157,149 @@ spec:
             successThreshold: 1
             timeoutSeconds: 5
 ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: controller-teapot.ovh-test
-# spec:
-#   replicas: 1
-#   strategy:
-#     type: Recreate
-#   selector:
-#     matchLabels:
-#       domain: teapot.ovh-test
-#   template:
-#     metadata:
-#       labels:
-#         domain: teapot.ovh-test
-#     spec:
-#       tolerations:
-#       - key: node-role.kubernetes.io/control-plane
-#         operator: Exists
-#         effect: NoSchedule
-#       nodeSelector:
-#         node-role.kubernetes.io/control-plane: ""
-#       automountServiceAccountToken: true
-#       serviceAccountName: serviceaccount
-#       securityContext:
-#         fsGroup: 65534
-#         runAsNonRoot: true
-#         seccompProfile:
-#           type: RuntimeDefault
-#       containers:
-#         - name: external-dns
-#           securityContext:
-#             allowPrivilegeEscalation: false
-#             capabilities:
-#               drop:
-#               - ALL
-#             privileged: false
-#             readOnlyRootFilesystem: true
-#             runAsGroup: 65532
-#             runAsNonRoot: true
-#             runAsUser: 65532
-#           image: registry.k8s.io/external-dns/external-dns:v0.21.0
-#           imagePullPolicy: IfNotPresent
-#           args:
-#             - --log-format=text
-#             - --log-level=debug
-#             - --interval=1m
-#             - --source=crd
-#             - --source=ingress
-#             - --source=service
-#             - --provider=webhook
-#             - --webhook-provider-url=http://127.0.0.1:8145
-#             - --domain-filter=teapot.ovh
-#             - --txt-owner-id=prod
-#             - --managed-record-types=A
-#             - --managed-record-types=CNAME
-#             - --managed-record-types=MX
-#             - --managed-record-types=TXT
-#           ports:
-#             - name: http
-#               protocol: TCP
-#               containerPort: 7979
-#           resources:
-#             requests:
-#               cpu: 10m
-#               memory: 64Mi
-#             limits:
-#               cpu: 100m
-#               memory: 128Mi
-#           livenessProbe:
-#             failureThreshold: 2
-#             httpGet:
-#               path: /healthz
-#               port: http
-#             initialDelaySeconds: 10
-#             periodSeconds: 30
-#             successThreshold: 1
-#             timeoutSeconds: 5
-#           readinessProbe:
-#             failureThreshold: 6
-#             httpGet:
-#               path: /healthz
-#               port: http
-#             initialDelaySeconds: 5
-#             periodSeconds: 10
-#             successThreshold: 1
-#             timeoutSeconds: 5
-#         - name: desecd
-#           securityContext:
-#             allowPrivilegeEscalation: false
-#             capabilities:
-#               drop:
-#               - ALL
-#             privileged: false
-#             readOnlyRootFilesystem: true
-#             runAsNonRoot: true
-#             runAsUser: 65532
-#           image: ttl.sh/teapotovh_desecd:1h
-#           imagePullPolicy: Always
-#           args:
-#             - --httplog-level=info
-#             - --log-level=debug
-#             - --desec-domain=teapot.ovh
-#             - --desec-token=$(DESEC_TOKEN)
-#           env:
-#           - name: DESEC_TOKEN
-#             valueFrom:
-#               secretKeyRef:
-#                 name: external-dns-desec-credentials-teapot.ovh
-#                 key: token
-#           ports:
-#             - name: http
-#               protocol: TCP
-#               containerPort: 8145
-#             - name: observability
-#               protocol: TCP
-#               containerPort: 8146
-#           resources:
-#             requests:
-#               cpu: 10m
-#               memory: 64Mi
-#             limits:
-#               cpu: 100m
-#               memory: 128Mi
-#           livenessProbe:
-#             failureThreshold: 2
-#             httpGet:
-#               path: /livez
-#               port: observability
-#             initialDelaySeconds: 10
-#             periodSeconds: 30
-#             successThreshold: 1
-#             timeoutSeconds: 5
-#           startupProbe:
-#             failureThreshold: 6
-#             httpGet:
-#               path: /readyz
-#               port: observability
-#             initialDelaySeconds: 5
-#             periodSeconds: 10
-#             successThreshold: 1
-#             timeoutSeconds: 5
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controller-teapot.ovh-test
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      domain: teapot.ovh-test
+  template:
+    metadata:
+      labels:
+        domain: teapot.ovh-test
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
+      automountServiceAccountToken: true
+      serviceAccountName: serviceaccount
+      securityContext:
+        fsGroup: 65534
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: external-dns
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 65532
+            runAsNonRoot: true
+            runAsUser: 65532
+          image: registry.k8s.io/external-dns/external-dns:v0.21.0
+          imagePullPolicy: IfNotPresent
+          args:
+            - --log-format=text
+            - --log-level=debug
+            - --interval=1m
+            - --source=crd
+            - --source=ingress
+            - --source=service
+            - --provider=webhook
+            - --webhook-provider-url=http://127.0.0.1:8145
+            - --domain-filter=teapot.ovh
+            - --txt-owner-id=prod
+            - --managed-record-types=A
+            - --managed-record-types=CNAME
+            - --managed-record-types=MX
+            - --managed-record-types=TXT
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 7979
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            failureThreshold: 2
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+        - name: desecd
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+          image: ttl.sh/teapotovh_desecd:1h
+          imagePullPolicy: Always
+          args:
+            - --httplog-level=info
+            - --log-level=debug
+            - --desec-domain=teapot.ovh
+            - --desec-token=$(DESEC_TOKEN)
+            # - --desec-dry-run
+          env:
+          - name: DESEC_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-desec-credentials-teapot.ovh
+                key: token
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 8145
+            - name: observability
+              protocol: TCP
+              containerPort: 8146
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            failureThreshold: 2
+            httpGet:
+              path: /livez
+              port: observability
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          startupProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /readyz
+              port: observability
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
 ---
 apiVersion: apps/v1
 kind: Deployment
