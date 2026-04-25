@@ -3,63 +3,11 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  # custom_parsers.conf: |
-  #   [PARSER]
-  #       Name docker_no_time
-  #       Format json
-  #       Time_Keep Off
-  #       Time_Key time
-  #       Time_Format %Y-%m-%dT%H:%M:%S.%L
-  #
-  # fluent-bit.conf: |
-  #   [SERVICE]
-  #       Daemon Off
-  #       Flush 1
-  #       Log_Level info
-  #       Parsers_File /fluent-bit/etc/parsers.conf
-  #       Parsers_File /fluent-bit/etc/conf/custom_parsers.conf
-  #
-  #   [INPUT]
-  #       Name tail
-  #       Path /var/log/containers/*.log
-  #       multiline.parser docker, cri
-  #       Tag kube.*
-  #       Mem_Buf_Limit 5MB
-  #       Skip_Long_Lines On
-  #
-  #   [INPUT]
-  #       Name systemd
-  #       Tag host.*
-  #       Systemd_Filter _SYSTEMD_UNIT=kubelet.service
-  #       Read_From_Tail On
-  #
-  #   [FILTER]
-  #       Name kubernetes
-  #       Match kube.*
-  #       Merge_Log On
-  #       Keep_Log Off
-  #       K8S-Logging.Parser On
-  #       K8S-Logging.Exclude On
-  #
-  #   [OUTPUT]
-  #       Name es
-  #       Match kube.*
-  #       Host elasticsearch-master
-  #       Logstash_Format On
-  #       Retry_Limit False
-  #
-  #   [OUTPUT]
-  #       Name es
-  #       Match host.*
-  #       Host elasticsearch-master
-  #       Logstash_Format On
-  #       Logstash_Prefix node
-  #       Retry_Limit False
   fluent-bit.conf: |
     [SERVICE]
         Flush         5
         Daemon        Off
-        Log_Level     info
+        Log_Level     warn
         Parsers_File  parsers.conf
         HTTP_Server   On
         HTTP_Listen   0.0.0.0
@@ -71,6 +19,7 @@ data:
         Name              tail
         Tag               kube.*
         Path              /var/log/containers/*.log
+        Exclude_Path      /var/log/containers/fluent-bit-*,/var/log/containers/logd-server-*
         multiline.parser  docker, cri
         DB                /var/log/flb_kube.db
         Mem_Buf_Limit     10MB
