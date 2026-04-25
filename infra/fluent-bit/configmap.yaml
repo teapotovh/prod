@@ -25,14 +25,19 @@ data:
         Mem_Buf_Limit     10MB
         Skip_Long_Lines   On
         Refresh_Interval  10
- 
-    # systemd / journald (kubelet, containerd, etc.)
+
     [INPUT]
         Name            systemd
-        Tag             systemd.*
+        Tag             systemd.kubelet
         Systemd_Filter  _SYSTEMD_UNIT=kubelet.service
+        DB              /var/log/flb_kubelet.db
+        Read_From_Tail  On
+
+    [INPUT]
+        Name            systemd
+        Tag             systemd.containerd
         Systemd_Filter  _SYSTEMD_UNIT=containerd.service
-        DB              /var/log/flb_systemd.db
+        DB              /var/log/flb_containerd.db
         Read_From_Tail  On
  
     # dmesg — kernel ring buffer via journald transport
@@ -52,18 +57,45 @@ data:
         Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
         Kube_Tag_Prefix     kube.var.log.containers.
         Merge_Log           On
-        Merge_Log_Key       log_parsed
         Keep_Log            Off
         Annotations         Off
         Labels              On
  
-    # Lift kubernetes.* sub-fields to the top level for easier lnav querying
-    # [FILTER]
-    #     Name    nest
-    #     Match   kube.*
-    #     Operation lift
-    #     Nested_under kubernetes
-    #     Add_prefix k8s_
+    [FILTER]
+        Name    nest
+        Match   kube.*
+        Operation lift
+        Nested_under kubernetes
+        Add_prefix kube_
+
+    # Wrap everything into "data"
+    [FILTER]
+        Name       nest
+        Match      *
+        Operation  nest
+        Wildcard   *
+        Nest_under data
+
+    [FILTER]
+        Name    record_modifier
+        Match   systemd.kubelet
+        Record  source kubelet
+
+    [FILTER]
+        Name    record_modifier
+        Match   systemd.containerd
+        Record  source containerd
+
+    [FILTER]
+        Name    record_modifier
+        Match   dmesg.*
+        Record  source dmesg
+
+    [FILTER]
+        Name    lua
+        Match   kube.*
+        script  event.lua
+        call    set_source
  
     [OUTPUT]
         Name              http
@@ -83,3 +115,19 @@ data:
         Format      json
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%LZ
+
+  event.lua: |
+    function set_source(tag, timestamp, record)
+        local app = ""
+        if record["data"] and record["data"]["kube_labels"] and record["data"]["kube_labels"]["app"] then
+            app = record["data"]["kube_labels"]["app"]
+        else
+            app = "unknown"
+        end
+        record["source"] = "app:" .. app
+
+        record["timestamp"] = record["data"]["timestamp"]
+        record["data"]["timestamp"] = nil
+
+        return 1, timestamp, record
+    end
