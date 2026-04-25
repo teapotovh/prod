@@ -6,5 +6,6 @@ in pkgs.mkShell {
       kubernetes-helm
       k9s
       kubeseal
+      stern
   ];
 }
