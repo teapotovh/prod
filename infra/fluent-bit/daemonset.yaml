@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: scraper
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   template:
     spec:
@@ -43,7 +45,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: fluent-bit
+            name: config
         - hostPath:
             path: /var/log
           name: varlog

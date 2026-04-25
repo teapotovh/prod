@@ -102,10 +102,10 @@ data:
         Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
         Kube_Tag_Prefix     kube.var.log.containers.
-        Merge_Log           On       # unpack JSON log lines into the record
+        Merge_Log           On
         Merge_Log_Key       log_parsed
-        Keep_Log            Off      # drop the raw "log" string after merging
-        Annotations         Off      # skip annotations (usually noisy)
+        Keep_Log            Off
+        Annotations         Off
         Labels              On
  
     # Lift kubernetes.* sub-fields to the top level for easier lnav querying
