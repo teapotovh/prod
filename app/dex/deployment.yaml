@@ -57,6 +57,11 @@ spec:
                 secretKeyRef:
                   name: dex-secrets
                   key: immich
+            - name: MATRIX_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: dex-secrets
+                  key: matrix
           livenessProbe:
             httpGet:
               path: /healthz
