@@ -209,6 +209,7 @@ spec:
 #             - --source=service
 #             - --provider=webhook
 #             - --webhook-provider-url=http://127.0.0.1:8145
+#             - --webhook-provider-read-timeout=20s
 #             - --domain-filter=teapot.ovh
 #             - --txt-owner-id=prod
 #             - --managed-record-types=A
