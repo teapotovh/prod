@@ -24,13 +24,21 @@ spec:
               containerPort: 2020
               protocol: TCP
           livenessProbe:
+            failureThreshold: 5
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 10
           readinessProbe:
+            failureThreshold: 5
             httpGet:
               path: /api/v2/health
               port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 10
           volumeMounts:
             - name: config
               mountPath: /fluent-bit/etc/conf
