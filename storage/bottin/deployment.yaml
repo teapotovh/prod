@@ -24,6 +24,7 @@ spec:
             - name: ldap
               containerPort: 389
           args:
+            - --log-format=json
             - --addr=0.0.0.0:389
             - --bottin-passwd=$(ROOT_PASSWORD)
             - --bottin-store-type=psql
