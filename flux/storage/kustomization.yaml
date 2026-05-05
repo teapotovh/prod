@@ -6,3 +6,4 @@ resources:
 - postgresql01.yaml
 - garage01.yaml
 - bottin.yaml
+- logd.yaml

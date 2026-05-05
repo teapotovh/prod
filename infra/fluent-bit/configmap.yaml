@@ -19,7 +19,7 @@ data:
         Name              tail
         Tag               kube.*
         Path              /var/log/containers/*.log
-        Exclude_Path      /var/log/containers/fluent-bit-*,/var/log/containers/logd-server-*
+        Exclude_Path      /var/log/containers/fluent-bit-*,/var/log/containers/teapot-logd-server-*
         multiline.parser  docker, cri
         DB                /var/log/flb_kube.db
         Mem_Buf_Limit     10MB
@@ -100,8 +100,8 @@ data:
     [OUTPUT]
         Name              http
         Match             *
-        Host              logd.storage
-        Port              8145
+        Host              teapot-logd-server.storage
+        Port              80
         URI               /logs
         Format            json
         json_date_key     timestamp
