@@ -54,4 +54,5 @@ spec:
             timeoutSeconds: 5
       volumes:
         - name: logs
-          hostPath: /var/log/teapot
+          hostPath:
+            path: /var/log/teapot
