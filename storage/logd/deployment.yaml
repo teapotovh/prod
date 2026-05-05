@@ -14,7 +14,7 @@ spec:
         node-role.kubernetes.io/control-plane: ""
       containers:
         - name: prometheus
-          image: mirror.gcr.io/prom/prometheus
+          image: ghcr.io/teapotovh/logd:v0.0.8
           args:
             - --log-path=/logs
           volumeMounts:
