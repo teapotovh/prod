@@ -6,6 +6,10 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "2021"
     spec:
       serviceAccountName: serviceaccount
       hostNetwork: false
@@ -22,6 +26,9 @@ spec:
           ports:
             - name: http
               containerPort: 2020
+              protocol: TCP
+            - name: metrics
+              containerPort: 2021
               protocol: TCP
           livenessProbe:
             failureThreshold: 5

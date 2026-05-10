@@ -5,6 +5,10 @@ metadata:
 spec:
   replicas: 1
   template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8145"
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane
