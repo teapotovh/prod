@@ -19,13 +19,13 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
         - name: bottin
-          image: ghcr.io/teapotovh/bottind:v0.0.4
+          image: ghcr.io/teapotovh/bottind:v0.0.11
           ports:
             - name: ldap
               containerPort: 389
           args:
             - --log-format=json
-            - --addr=0.0.0.0:389
+            - --ldapsrv-port=389
             - --bottin-passwd=$(ROOT_PASSWORD)
             - --bottin-store-type=psql
             - --bottin-store-url=postgresql://$(DB_USERNAME):$(DB_PASSWORD)@postgresql01-pooler.storage/bottin
