@@ -9,6 +9,11 @@ spec:
   replicas: 2
   podManagementPolicy: Parallel
   template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics/prometheus"
     spec:
       terminationGracePeriodSeconds: 30
       affinity:
@@ -46,13 +51,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz/live
-            port: 8080
+            port: http
           initialDelaySeconds: 10
           periodSeconds: 30
         readinessProbe:
           httpGet:
             path: /healthz/ready
-            port: 8080
+            port: http
           initialDelaySeconds: 5
           periodSeconds: 30
         resources:

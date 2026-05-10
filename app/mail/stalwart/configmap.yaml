@@ -100,3 +100,5 @@ data:
     [server.listener."http"]
     bind = "[::]:8080"
     protocol = "http"
+    [metrics.prometheus]
+    enable = true
