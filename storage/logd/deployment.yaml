@@ -8,7 +8,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "8145"
+        prometheus.io/port: "observability"
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane

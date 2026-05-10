@@ -9,7 +9,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "2021"
+        prometheus.io/port: "metrics"
     spec:
       serviceAccountName: serviceaccount
       hostNetwork: false

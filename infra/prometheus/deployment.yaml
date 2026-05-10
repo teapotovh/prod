@@ -9,8 +9,8 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port:   '9090'
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "http"
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane

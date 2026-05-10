@@ -16,7 +16,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "9154"
+        prometheus.io/port: "metrics"
     spec:
       terminationGracePeriodSeconds: 30
       affinity:
