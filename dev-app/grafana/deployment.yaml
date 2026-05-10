@@ -24,13 +24,13 @@ spec:
               path: /robots.txt
               port: http
               scheme: HTTP
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 2
           livenessProbe:
             failureThreshold: 3
-            initialDelaySeconds: 30
+            initialDelaySeconds: 90
             periodSeconds: 30
             successThreshold: 1
             tcpSocket:
