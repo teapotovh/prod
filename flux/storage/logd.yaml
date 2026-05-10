@@ -1,13 +1,13 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: logd
-spec:
-  interval: 5m
-  path: storage/logd
-  prune: true
-  dependsOn:
-    - name: storage
-  sourceRef:
-    kind: GitRepository
-    name: prod
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: logd
+# spec:
+#   interval: 5m
+#   path: storage/logd
+#   prune: true
+#   dependsOn:
+#     - name: storage
+#   sourceRef:
+#     kind: GitRepository
+#     name: prod
