@@ -45,8 +45,8 @@ spec:
               memory: 800Mi
           volumeMounts:
             - mountPath: /var/lib/grafana
-              name: pvc
+              name: store
       volumes:
-        - name: pvc
+        - name: store
           persistentVolumeClaim:
-            claimName: pvc
+            claimName: store

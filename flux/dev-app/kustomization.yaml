@@ -4,3 +4,4 @@ resources:
 - dev-app.yaml
 
 - adminer.yaml
+- grafana.yaml
