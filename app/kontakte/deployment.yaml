@@ -30,9 +30,8 @@ spec:
             - --log-format=json
             - --ldap-url=ldap://bottin-server.storage:389
             - --ldap-root-dn=$(LDAP_BIND_DN)
-            - --ldap-root-password=$(LDAP_BIND_PASSWORD)
+            - --ldap-root-passwd=$(LDAP_BIND_PASSWORD)
             - --httpauth-jwt-secret=$(JWT_SECRET)
-          args:
           env:
             - name: LDAP_BIND_DN
               valueFrom:
