@@ -24,8 +24,8 @@ spec:
                 matchLabels: {}
               topologyKey: kubernetes.io/hostname
       containers:
-        - name: dex
-          image: ghcr.io/teapotovh/kontakted:v0.0.13
+        - name: kontakte
+          image: ghcr.io/teapotovh/kontakted:v0.0.14
           args:
             - --log-format=json
             - --ldap-url=ldap://bottin-server.storage:389
