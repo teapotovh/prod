@@ -8,3 +8,4 @@ resources:
   - dex.yaml
   - vaultwarden.yaml
   - radicale.yaml
+  - kontakte.yaml
