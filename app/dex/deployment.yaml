@@ -21,8 +21,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: dex
-          image: ghcr.io/dexidp/dex:latest
-          imagePullPolicy: Always # Not the best thing to run in production
+          image: ghcr.io/dexidp/dex:v2.45.1
           ports:
             - name: http
               containerPort: 8080
