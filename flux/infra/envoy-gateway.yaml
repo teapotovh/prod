@@ -1,6 +1,20 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: envoy-gateway-crd
+spec:
+  interval: 5m
+  path: infra/envoy-gateway/crd
+  prune: true
+  dependsOn:
+    - name: gateway-api
+  sourceRef:
+    kind: GitRepository
+    name: prod
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: envoy-gateway
 spec:
   interval: 5m
@@ -8,6 +22,7 @@ spec:
   prune: true
   dependsOn:
     - name: gateway-api
+    - name: envoy-gateway-crd
   sourceRef:
     kind: GitRepository
     name: prod
