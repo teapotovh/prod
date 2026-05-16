@@ -1,5 +1,5 @@
 namespace: envoy-gateway-system
-namePrefix: envoy-gateway-cert
+namePrefix: envoy-gateway-cert-
 
 labels:
 - includeSelectors: true
