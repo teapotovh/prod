@@ -6,4 +6,6 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
-      envoyDaemonSet: {}
+      envoyDaemonSet:
+        container:
+          image: mirror.gcr.io/envoyproxy/envoy:distroless-v1.38.0
