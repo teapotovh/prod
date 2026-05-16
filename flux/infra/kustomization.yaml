@@ -1,6 +1,7 @@
 namespace: flux
 
 resources:
+- gateway-api.yaml
 - sealed-secrets.yaml
 - cert-manager.yaml
 - external-dns.yaml
