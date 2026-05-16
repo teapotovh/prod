@@ -16,7 +16,7 @@ rules:
     resources:
       - mutatingwebhookconfigurations
     resourceNames:
-      - envoy-gateway-topology-injector.envoy-gateway-system
+      - topology-injector.envoy-gateway-system
     verbs:
       - update
       - patch
