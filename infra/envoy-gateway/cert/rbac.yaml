@@ -12,14 +12,14 @@ rules:
     - list
     - watch
   - apiGroups:
-      - admissionregistration.k8s.io
+    - admissionregistration.k8s.io
     resources:
-      - mutatingwebhookconfigurations
+    - mutatingwebhookconfigurations
     resourceNames:
-      - topology-injector.envoy-gateway-system
+    - envoy-gateway-topology-injector.envoy-gateway-system
     verbs:
-      - update
-      - patch
+    - update
+    - patch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
