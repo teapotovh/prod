@@ -18,4 +18,3 @@ resources:
 - deployment.yaml
 - service.yaml
 - mutatingwebhook.yaml
-- cert

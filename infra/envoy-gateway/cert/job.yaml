@@ -42,6 +42,6 @@ spec:
             type: RuntimeDefault
       imagePullSecrets: []
       restartPolicy: Never
-      serviceAccountName: account
+      serviceAccountName: serviceaccount
   ttlSecondsAfterFinished: 30
 
