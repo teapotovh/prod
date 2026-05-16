@@ -1,10 +1,24 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: cert-manager-crd
+spec:
+  interval: 5m
+  path: infra/cert-manager/crd
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: prod
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: cert-manager
 spec:
   interval: 5m
   path: infra/cert-manager
+  dependsOn:
+    - name: cert-manager-crd
   prune: true
   sourceRef:
     kind: GitRepository

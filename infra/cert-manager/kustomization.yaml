@@ -11,13 +11,6 @@ labels:
     app.kubernetes.io/managed-by: kustomize
 
 resources:
-- https://github.com/cert-manager/cert-manager/raw/refs/tags/v1.17.0/deploy/crds/crd-certificaterequests.yaml
-- https://github.com/cert-manager/cert-manager/raw/refs/tags/v1.17.0/deploy/crds/crd-certificates.yaml
-- https://github.com/cert-manager/cert-manager/raw/refs/tags/v1.17.0/deploy/crds/crd-challenges.yaml
-- https://github.com/cert-manager/cert-manager/raw/refs/tags/v1.17.0/deploy/crds/crd-clusterissuers.yaml
-- https://github.com/cert-manager/cert-manager/raw/refs/tags/v1.17.0/deploy/crds/crd-issuers.yaml
-- https://github.com/cert-manager/cert-manager/raw/refs/tags/v1.17.0/deploy/crds/crd-orders.yaml
-  
 - namespace.yaml
 - rbac
 - cainjector
