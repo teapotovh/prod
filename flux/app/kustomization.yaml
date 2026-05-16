@@ -2,6 +2,7 @@ namespace: flux
 
 resources:
   - app.yaml
+  - gateway.yaml
 
   - sendmail.yaml
   - mail.yaml

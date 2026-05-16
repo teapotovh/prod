@@ -9,4 +9,3 @@ labels:
 
 resources:
 - gatewayclass.yaml
-- gateway.yaml
