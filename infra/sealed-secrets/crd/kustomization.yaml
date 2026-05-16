@@ -11,7 +11,4 @@ labels:
     app.kubernetes.io/managed-by: kustomize
 
 resources:
-- serviceaccount.yaml
-- rbac.yaml
-- deployment.yaml
-- service.yaml
+- https://github.com/bitnami-labs/sealed-secrets/raw/refs/tags/v0.34.0/helm/sealed-secrets/crds/bitnami.com_sealedsecrets.yaml
