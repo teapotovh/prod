@@ -28,4 +28,6 @@ data:
                       name: envoy-ratelimit
         shutdownManager:
           image: mirror.gcr.io/envoyproxy/gateway:v1.8.0
+        envoyGateway:
+          image: mirror.gcr.io/envoyproxy/envoy:distroless-v1.38.0
       type: Kubernetes
