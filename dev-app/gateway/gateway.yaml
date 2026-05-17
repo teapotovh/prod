@@ -11,6 +11,7 @@ spec:
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
       name: app-proxy
+      namespace: app
   listeners:
     - name: http
       protocol: HTTP
@@ -18,33 +19,6 @@ spec:
       allowedRoutes:
         namespaces:
           from: All # allows cert-manager provisioned HTTPRoutes to be used
-
-    - name: user-teapot-ovh
-      protocol: HTTPS
-      port: 443
-      hostname: user.teapot.ovh
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: user-teapot-ovh-tls
-
-    - name: oauth-teapot-ovh
-      protocol: HTTPS
-      port: 443
-      hostname: oauth.teapot.ovh
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: oauth-teapot-ovh-tls
-
-    - name: vault-teapot-ovh
-      protocol: HTTPS
-      port: 443
-      hostname: vault.teapot.ovh
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: vault-teapot-ovh-tls
 
     - name: calendar-teapot-ovh
       protocol: HTTPS

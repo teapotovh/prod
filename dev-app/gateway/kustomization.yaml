@@ -1,0 +1,17 @@
+namespace: dev-app
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: dev-app-gateway
+    app.kubernetes.io/instance: dev-app-gateway
+    app.kubernetes.io/name: dev-app-gateway
+    app.kubernetes.io/part-of: dev-app-gateway
+    app.kubernetes.io/managed-by: kustomize
+
+resources:
+- gateway.yaml
+- httproute.yaml
+- httproutefilter.yaml
+- backendtrafficpolicy.yaml
+- referencegrant.yaml

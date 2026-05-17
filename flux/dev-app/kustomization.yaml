@@ -2,6 +2,7 @@ namespace: flux
 
 resources:
 - dev-app.yaml
+- gateway.yaml
 
 - adminer.yaml
 - grafana.yaml
