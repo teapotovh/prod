@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: server
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: smtp.teapot.ovh
+    external-dns.kubernetes.io/hostname: smtp.teapot.ovh
 spec:
   type: NodePort
   internalTrafficPolicy: Local
