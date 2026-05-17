@@ -22,6 +22,7 @@ spec:
   prune: true
   dependsOn:
     - name: app
+    - name: external-dns-crd
     - name: mail-storage
     - name: garage01
   sourceRef:
