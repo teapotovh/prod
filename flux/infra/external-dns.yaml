@@ -21,7 +21,6 @@ spec:
   dependsOn:
     - name: external-dns-crd
     - name: sealed-secrets
-  suspend: true # TODO: re-enable external-dns
   sourceRef:
     kind: GitRepository
     name: prod
