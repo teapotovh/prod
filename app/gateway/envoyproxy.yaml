@@ -11,5 +11,5 @@ spec:
           image: mirror.gcr.io/envoyproxy/envoy:distroless-v1.38.0
       envoyService:
         type: NodePort
-        internalTrafficPolicy: Local
-        externalTrafficPolicy: Local
+        # internalTrafficPolicy: Local
+        # externalTrafficPolicy: Local
