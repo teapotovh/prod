@@ -2488,10 +2488,10 @@ data:
     # client_key = "/path/to/client.key"
 
     # Search user bind dn
-    bind_dn = '$__env{{LDAP_BIND_DN}}'
+    bind_dn = '$__env{LDAP_BIND_DN}'
     # Search user bind password
     # If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
-    bind_password = '$__env{{LDAP_BIND_PASSWORD}}'
+    bind_password = '$__env{LDAP_BIND_PASSWORD}'
     # We recommend using variable expansion for the bind_password, for more info https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#variable-expansion
     # bind_password = '$__env{LDAP_BIND_PASSWORD}'
 
@@ -2523,15 +2523,6 @@ data:
     group_dn = "cn=admin,ou=groups,dc=teapot,dc=ovh"
     org_role = "Admin"
     # To make user an instance admin  (Grafana Admin) uncomment line below
-    # grafana_admin = true
+    grafana_admin = true
     # The Grafana organization database id, optional, if left out the default org (id 1) will be used
     # org_id = 1
-
-    [[servers.group_mappings]]
-    group_dn = "cn=editors,ou=groups,dc=teapot,dc=ovh"
-    org_role = "Editor"
-
-    [[servers.group_mappings]]
-    # If you want to match all (or no ldap groups) then you can use wildcard
-    group_dn = "*"
-    org_role = "Viewer"
