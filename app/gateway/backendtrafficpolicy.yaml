@@ -18,5 +18,5 @@ spec:
                 type: Distinct
                 value: 0.0.0.0/0
           limit:
-            requests: 10
-            unit: Second
+            requests: 120
+            unit: Minute
