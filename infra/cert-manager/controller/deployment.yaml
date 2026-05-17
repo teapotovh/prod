@@ -29,6 +29,7 @@ spec:
           - --leader-election-namespace=$(POD_NAMESPACE)
           - --acme-http01-solver-image=quay.io/jetstack/cert-manager-acmesolver:v1.17.0
           - --max-concurrent-challenges=60
+          - --enable-gateway-api
           ports:
           - containerPort: 9402
             name: http-metrics
