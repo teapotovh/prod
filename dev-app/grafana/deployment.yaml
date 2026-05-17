@@ -50,3 +50,9 @@ spec:
         - name: store
           persistentVolumeClaim:
             claimName: store
+        - name: config
+          configMap:
+            name: config
+            items:
+              - key: defaults.ini
+                path: /usr/share/grafana/conf/defaults.ini
