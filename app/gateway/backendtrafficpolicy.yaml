@@ -1,0 +1,21 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: gateway-policies
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: gateway
+  compression:
+    - type: Gzip
+  rateLimit:
+    type: Local
+    local:
+      rules:
+        - clientSelectors:
+            - remoteAddress:
+                type: Distinct
+          limit:
+            requests: 10
+            unit: Second

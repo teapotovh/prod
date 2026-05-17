@@ -24,3 +24,12 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: user-teapot-ovh-tls
+
+    - name: oauth-teapot-ovh
+      protocol: HTTPS
+      port: 443
+      hostname: oauth.teapot.ovh
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: oauth-teapot-ovh-tls

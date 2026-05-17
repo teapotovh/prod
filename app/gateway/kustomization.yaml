@@ -13,3 +13,5 @@ resources:
 - envoyproxy.yaml
 - gateway.yaml
 - httproute.yaml
+- httproutefilter.yaml
+- backendtrafficpolicy.yaml
