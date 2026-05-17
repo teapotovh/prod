@@ -18,3 +18,7 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - name: app-gateway-cert

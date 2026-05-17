@@ -14,3 +14,4 @@ resources:
   - service.yaml
   - ingress.yaml
   - secret.yaml
+  - httproute.yaml
