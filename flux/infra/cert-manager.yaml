@@ -18,6 +18,7 @@ spec:
   interval: 1h
   path: infra/cert-manager
   dependsOn:
+    - name: gateway-api
     - name: cert-manager-crd
   prune: true
   sourceRef:
