@@ -12,6 +12,8 @@ data:
     logging:
       level:
         default: info
+    xdsServer:
+      address: envoy-gateway-controller.envoy-gateway-system.svc.cluster.local
     provider:
       kubernetes:
         rateLimitDeployment:
