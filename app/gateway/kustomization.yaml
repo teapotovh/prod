@@ -12,3 +12,4 @@ labels:
 resources:
 - envoyproxy.yaml
 - gateway.yaml
+- httproute.yaml
