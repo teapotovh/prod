@@ -5,6 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
+      namespace: app
   hostnames:
     - grafana.teapot.ovh
   rules:
