@@ -4,9 +4,9 @@ metadata:
   name: httproute
 spec:
   parentRefs:
-    - name: app-gateway
+    - name: gateway
   hostnames:
-    - "user.teapot.ovh"
+    - user.teapot.ovh
   rules:
     - backendRefs:
       - group: ""
