@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: dex-storage
 spec:
-  interval: 5m
+  interval: 1h
   path: app/dex/storage
   prune: true
   dependsOn:
@@ -17,7 +17,7 @@ kind: Kustomization
 metadata:
   name: dex
 spec:
-  interval: 5m
+  interval: 1h
   path: app/dex
   prune: true
   dependsOn:

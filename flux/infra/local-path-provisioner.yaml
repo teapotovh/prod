@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: local-path-provisioner
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/local-path-provisioner
   prune: true
   sourceRef:

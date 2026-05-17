@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: cloudnative-pg-crd
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/cloudnative-pg/crd
   prune: true
   sourceRef:
@@ -15,7 +15,7 @@ kind: Kustomization
 metadata:
   name: cloudnative-pg
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/cloudnative-pg
   prune: true
   dependsOn:

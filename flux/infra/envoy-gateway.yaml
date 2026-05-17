@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: envoy-gateway-crd
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/envoy-gateway/crd
   prune: true
   dependsOn:
@@ -17,7 +17,7 @@ kind: Kustomization
 metadata:
   name: envoy-gateway
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/envoy-gateway
   prune: true
   dependsOn:
@@ -32,7 +32,7 @@ kind: Kustomization
 metadata:
   name: envoy-gateway-cert
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/envoy-gateway/cert
   prune: true
   dependsOn:
@@ -46,7 +46,7 @@ kind: Kustomization
 metadata:
   name: envoy-gateway-gateway
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/envoy-gateway/gateway
   prune: true
   dependsOn:

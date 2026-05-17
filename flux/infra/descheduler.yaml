@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: descheduler
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/descheduler
   prune: true
   sourceRef:

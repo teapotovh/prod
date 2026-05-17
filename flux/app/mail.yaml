@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: mail-storage
 spec:
-  interval: 5m
+  interval: 1h
   path: app/mail/storage
   prune: true
   dependsOn:
@@ -17,7 +17,7 @@ kind: Kustomization
 metadata:
   name: mail
 spec:
-  interval: 5m
+  interval: 1h
   path: app/mail
   prune: true
   dependsOn:

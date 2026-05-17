@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: adminer
 spec:
-  interval: 5m
+  interval: 1h
   path: dev-app/adminer
   prune: true
   dependsOn:

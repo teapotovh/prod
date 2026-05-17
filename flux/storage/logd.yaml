@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: logd
 spec:
-  interval: 5m
+  interval: 1h
   path: storage/logd
   prune: true
   dependsOn:

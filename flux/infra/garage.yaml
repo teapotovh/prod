@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: garage
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/garage
   prune: true
   sourceRef:

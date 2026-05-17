@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: prometheus
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/prometheus
   prune: true
   sourceRef:

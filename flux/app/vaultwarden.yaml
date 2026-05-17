@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: vaultwarden-storage
 spec:
-  interval: 5m
+  interval: 1h
   path: app/vaultwarden/storage
   prune: true
   dependsOn:
@@ -17,7 +17,7 @@ kind: Kustomization
 metadata:
   name: vaultwarden
 spec:
-  interval: 5m
+  interval: 1h
   path: app/vaultwarden
   prune: true
   dependsOn:

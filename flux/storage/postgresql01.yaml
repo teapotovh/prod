@@ -3,12 +3,12 @@ kind: Kustomization
 metadata:
   name: postgresql01
 spec:
-  interval: 5m
+  interval: 1h
   path: storage/postgresql01
   prune: true
   dependsOn:
     - name: storage
-    - name: cloudnative-pg
+    - name: cloudnative-pg-crd
   sourceRef:
     kind: GitRepository
     name: prod

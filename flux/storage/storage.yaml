@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: storage
 spec:
-  interval: 5m
+  interval: 1h
   path: storage
   prune: true
   sourceRef:

@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: bottin
 spec:
-  interval: 5m
+  interval: 1h
   path: storage/bottin
   prune: true
   dependsOn:

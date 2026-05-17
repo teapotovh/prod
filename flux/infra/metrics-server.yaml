@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: metrics-server
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/metrics-server
   prune: true
   sourceRef:

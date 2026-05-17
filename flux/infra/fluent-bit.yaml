@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: fluent-bit
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/fluent-bit
   prune: true
   sourceRef:

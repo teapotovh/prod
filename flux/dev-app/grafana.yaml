@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: grafana
 spec:
-  interval: 5m
+  interval: 1h
   path: dev-app/grafana
   prune: true
   dependsOn:

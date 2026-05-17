@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: garage01
 spec:
-  interval: 5m
+  interval: 1h
   path: storage/garage01
   prune: true
   dependsOn:

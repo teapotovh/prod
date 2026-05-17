@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: radicale-storage
 spec:
-  interval: 5m
+  interval: 1h
   path: app/radicale/storage
   prune: true
   dependsOn:
@@ -17,7 +17,7 @@ kind: Kustomization
 metadata:
   name: radicale
 spec:
-  interval: 5m
+  interval: 1h
   path: app/radicale
   prune: true
   dependsOn:

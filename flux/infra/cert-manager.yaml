@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: cert-manager-crd
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/cert-manager/crd
   prune: true
   sourceRef:
@@ -15,7 +15,7 @@ kind: Kustomization
 metadata:
   name: cert-manager
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/cert-manager
   dependsOn:
     - name: cert-manager-crd
@@ -29,10 +29,10 @@ kind: Kustomization
 metadata:
   name: cert-manager-issuers
 spec:
-  interval: 5m
+  interval: 1h
   path: infra/cert-manager/issuers
   dependsOn:
-    - name: cert-manager
+    - name: cert-manager-crd
   prune: true
   sourceRef:
     kind: GitRepository
