@@ -63,3 +63,6 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: grafana-teapot-ovh-tls
+      allowedRoutes:
+        namespaces:
+          from: All
