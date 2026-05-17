@@ -11,5 +11,16 @@ spec:
           image: mirror.gcr.io/envoyproxy/envoy:distroless-v1.38.0
       envoyService:
         type: NodePort
-        # internalTrafficPolicy: Local
-        # externalTrafficPolicy: Local
+        externalTrafficPolicy: Local
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              internalTrafficPolicy: Local
+              ports:
+              - nodePort: 30081
+                port: 80
+                protocol: TCP
+              - nodePort: 30444
+                port: 443
+                protocol: TCP
