@@ -13,4 +13,5 @@ resources:
 - gateway.yaml
 - httproute.yaml
 - httproutefilter.yaml
+- backendtrafficpolicy.yaml
 - referencegrant.yaml
