@@ -15,3 +15,4 @@ resources:
 - httproute.yaml
 - httproutefilter.yaml
 - backendtrafficpolicy.yaml
+- referencegrant.yaml

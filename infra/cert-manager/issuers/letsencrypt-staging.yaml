@@ -9,5 +9,10 @@ spec:
       name: letsencrypt-staging-account-key
     solvers:
       - http01:
-          ingress:
-            ingressClassName: ingress-nginx-ingressclass
+          # ingress:
+          #   ingressClassName: ingress-nginx-ingressclass
+          gatewayHTTPRoute:
+            parentRefs:
+              - name: gateway
+                namespace: app
+                kind: Gateway
