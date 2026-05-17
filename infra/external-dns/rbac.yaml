@@ -24,6 +24,13 @@ rules:
   - apiGroups: ["externaldns.k8s.io"]
     resources: ["dnsendpoints/status"]
     verbs: ["*"]
+# For gateway-api support
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get","watch","list"]
+  - apiGroups: ["gateway.networking.k8s.io"]
+    resources: ["gateways","httproutes","grpcroutes","tlsroutes","tcproutes","udproutes","listenersets"]
+    verbs: ["get","watch","list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -36,4 +43,3 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: serviceaccount
-

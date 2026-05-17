@@ -14,12 +14,12 @@ spec:
       labels:
         domain: teapot.ovh
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
+      # tolerations:
+      # - key: node-role.kubernetes.io/control-plane
+      #   operator: Exists
+      #   effect: NoSchedule
+      # nodeSelector:
+      #   node-role.kubernetes.io/control-plane: ""
       automountServiceAccountToken: true
       serviceAccountName: serviceaccount
       securityContext:
@@ -320,12 +320,12 @@ spec:
       labels:
         domain: cappuccino.ovh
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
+      # tolerations:
+      # - key: node-role.kubernetes.io/control-plane
+      #   operator: Exists
+      #   effect: NoSchedule
+      # nodeSelector:
+      #   node-role.kubernetes.io/control-plane: ""
       automountServiceAccountToken: true
       serviceAccountName: serviceaccount
       securityContext:
