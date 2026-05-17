@@ -15,8 +15,8 @@ spec:
       rules:
         - clientSelectors:
             - sourceCIDR:
-              type: Distinct
-              value: 0.0.0.0/0
+                type: Distinct
+                value: 0.0.0.0/0
           limit:
             requests: 10
             unit: Second
