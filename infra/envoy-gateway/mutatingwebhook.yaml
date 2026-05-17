@@ -10,7 +10,7 @@ webhooks:
     sideEffects: None
     clientConfig:
       service:
-        name: controller
+        name: envoy-gateway
         path: "/inject-pod-topology"
         port: 9443
     failurePolicy: Ignore

@@ -28,7 +28,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: KUBERNETES_CLUSTER_DOMAIN
-          value: cluster.local
+          value: prod.teapot.local
         image: mirror.gcr.io/envoyproxy/gateway:v1.8.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
