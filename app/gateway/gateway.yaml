@@ -45,3 +45,12 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: vault-teapot-ovh-tls
+
+    - name: calendar-teapot-ovh
+      protocol: HTTPS
+      port: 443
+      hostname: calendar.teapot.ovh
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: calendar-teapot-ovh-tls
