@@ -46,6 +46,8 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: store
+            - mountPath: /usr/share/grafana/conf
+              name: config
       volumes:
         - name: store
           persistentVolumeClaim:
@@ -53,6 +55,3 @@ spec:
         - name: config
           configMap:
             name: config
-            items:
-              - key: defaults.ini
-                path: /usr/share/grafana/conf/defaults.ini
