@@ -114,6 +114,14 @@ data:
         Retry_Limit       5
 
     [OUTPUT]
+        Name              loki
+        Match             *
+        Host              loki-server.storage
+        Port              3100
+
+        Line_Format json
+
+    [OUTPUT]
         Name            prometheus_exporter
         Match           internal_metrics
         Host            0.0.0.0
