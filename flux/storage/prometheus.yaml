@@ -4,7 +4,7 @@ metadata:
   name: prometheus
 spec:
   interval: 1h
-  path: infra/prometheus
+  path: storage/prometheus
   prune: true
   sourceRef:
     kind: GitRepository
