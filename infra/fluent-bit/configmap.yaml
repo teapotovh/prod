@@ -3,150 +3,202 @@ kind: ConfigMap
 metadata:
   name: config
 data:
+  # fluent-bit.conf: |
+  #   [SERVICE]
+  #       Flush         5
+  #       Daemon        Off
+  #       Log_Level     warn
+  #       Parsers_File  parsers.conf
+  #       HTTP_Server   On
+  #       HTTP_Listen   0.0.0.0
+  #       HTTP_Port     2020
+  #       Health_Check  On
+  #
+  #   # Kubernetes pod logs
+  #   [INPUT]
+  #       Name              tail
+  #       Tag               kube.*
+  #       Path              /var/log/containers/*.log
+  #       Exclude_Path      /var/log/containers/fluent-bit-*,/var/log/containers/teapot-logd-server-*
+  #       multiline.parser  docker, cri
+  #       DB                /var/log/flb_kube.db
+  #       Mem_Buf_Limit     10MB
+  #       Skip_Long_Lines   On
+  #       Refresh_Interval  10
+  #
+  #   [INPUT]
+  #       Name            systemd
+  #       Tag             systemd.kubelet
+  #       Systemd_Filter  _SYSTEMD_UNIT=kubelet.service
+  #       DB              /var/log/flb_kubelet.db
+  #       Read_From_Tail  On
+  #
+  #   [INPUT]
+  #       Name            systemd
+  #       Tag             systemd.containerd
+  #       Systemd_Filter  _SYSTEMD_UNIT=containerd.service
+  #       DB              /var/log/flb_containerd.db
+  #       Read_From_Tail  On
+  #
+  #   # dmesg — kernel ring buffer via journald transport
+  #   [INPUT]
+  #       Name            systemd
+  #       Tag             dmesg.*
+  #       Systemd_Filter  _TRANSPORT=kernel
+  #       DB              /var/log/flb_dmesg.db
+  #       Read_From_Tail  On
+  #
+  #   [INPUT]
+  #       Name            fluentbit_metrics
+  #       Tag             internal_metrics
+  #       Scrape_Interval 10
+  #
+  #   # Enrich pod logs with Kubernetes metadata (namespace, pod, image, labels…)
+  #   [FILTER]
+  #       Name                kubernetes
+  #       Match               kube.*
+  #       Kube_URL            https://kubernetes.default.svc:443
+  #       Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+  #       Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
+  #       Kube_Tag_Prefix     kube.var.log.containers.
+  #       Merge_Log           On
+  #       Keep_Log            Off
+  #       Annotations         Off
+  #       Labels              On
+  #
+  #   [FILTER]
+  #       Name    nest
+  #       Match   kube.*
+  #       Operation lift
+  #       Nested_under kubernetes
+  #       Add_prefix kube_
+  #
+  #   # Wrap everything into "data"
+  #   [FILTER]
+  #       Name       nest
+  #       Match      *
+  #       Operation  nest
+  #       Wildcard   *
+  #       Nest_under data
+  #
+  #   [FILTER]
+  #       Name    record_modifier
+  #       Match   systemd.kubelet
+  #       Record  source kubelet
+  #
+  #   [FILTER]
+  #       Name    record_modifier
+  #       Match   systemd.containerd
+  #       Record  source containerd
+  #
+  #   [FILTER]
+  #       Name    record_modifier
+  #       Match   dmesg.*
+  #       Record  source dmesg
+  #
+  #   [FILTER]
+  #       Name    lua
+  #       Match   kube.*
+  #       script  event.lua
+  #       call    set_source
+  #
+  #   [OUTPUT]
+  #       Name              http
+  #       Match             *
+  #       Host              teapot-logd-server.storage
+  #       Port              80
+  #       URI               /logs
+  #       Format            json
+  #       json_date_key     timestamp
+  #       json_date_format  iso8601
+  #       Retry_Limit       5
+  #
+  #   [OUTPUT]
+  #       Name              loki
+  #       Match             *
+  #       Host              loki-server.storage
+  #       Port              3100
+  #
+  #       Line_Format json
+  #
+  #   [OUTPUT]
+  #       Name            prometheus_exporter
+  #       Match           internal_metrics
+  #       Host            0.0.0.0
+  #       Port            2021
+  #
+  # parsers.conf: |
+  #   # Standard Docker / CRI parsers are built-in; define extras here if needed.
+  #   [PARSER]
+  #       Name        json
+  #       Format      json
+  #       Time_Key    time
+  #       Time_Format %Y-%m-%dT%H:%M:%S.%LZ
+  #
+  # event.lua: |
+  #   function set_source(tag, timestamp, record)
+  #       local app = ""
+  #       if record["data"] and record["data"]["kube_labels"] and record["data"]["kube_labels"]["app"] then
+  #           app = record["data"]["kube_labels"]["app"]
+  #       else
+  #           app = "unknown"
+  #       end
+  #       record["source"] = "app:" .. app
+  #
+  #       record["timestamp"] = record["data"]["timestamp"]
+  #       record["data"]["timestamp"] = nil
+  #
+  #       return 1, timestamp, record
+  #   end
   fluent-bit.conf: |
     [SERVICE]
-        Flush         5
-        Daemon        Off
-        Log_Level     warn
-        Parsers_File  parsers.conf
+        Flush        5
+        Daemon       Off
+        Log_Level    warn
         HTTP_Server   On
         HTTP_Listen   0.0.0.0
         HTTP_Port     2020
         Health_Check  On
- 
-    # Kubernetes pod logs
+
     [INPUT]
         Name              tail
-        Tag               kube.*
         Path              /var/log/containers/*.log
-        Exclude_Path      /var/log/containers/fluent-bit-*,/var/log/containers/teapot-logd-server-*
+        Exclude_Path      /var/log/containers/fluent-bit-*,/var/log/containers/loki-server-*
+        Tag               kube.*
         multiline.parser  docker, cri
-        DB                /var/log/flb_kube.db
-        Mem_Buf_Limit     10MB
-        Skip_Long_Lines   On
-        Refresh_Interval  10
+        Mem_Buf_Limit     5MB
 
-    [INPUT]
-        Name            systemd
-        Tag             systemd.kubelet
-        Systemd_Filter  _SYSTEMD_UNIT=kubelet.service
-        DB              /var/log/flb_kubelet.db
-        Read_From_Tail  On
-
-    [INPUT]
-        Name            systemd
-        Tag             systemd.containerd
-        Systemd_Filter  _SYSTEMD_UNIT=containerd.service
-        DB              /var/log/flb_containerd.db
-        Read_From_Tail  On
- 
-    # dmesg — kernel ring buffer via journald transport
-    [INPUT]
-        Name            systemd
-        Tag             dmesg.*
-        Systemd_Filter  _TRANSPORT=kernel
-        DB              /var/log/flb_dmesg.db
-        Read_From_Tail  On
-
-    [INPUT]
-        Name            fluentbit_metrics
-        Tag             internal_metrics
-        Scrape_Interval 10
- 
-    # Enrich pod logs with Kubernetes metadata (namespace, pod, image, labels…)
     [FILTER]
         Name                kubernetes
         Match               kube.*
-        Kube_URL            https://kubernetes.default.svc:443
-        Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
         Kube_Tag_Prefix     kube.var.log.containers.
         Merge_Log           On
         Keep_Log            Off
-        Annotations         Off
         Labels              On
- 
-    [FILTER]
-        Name    nest
-        Match   kube.*
-        Operation lift
-        Nested_under kubernetes
-        Add_prefix kube_
+        Annotations         Off
 
-    # Wrap everything into "data"
-    [FILTER]
-        Name       nest
-        Match      *
-        Operation  nest
-        Wildcard   *
-        Nest_under data
+    [INPUT]
+        Name            systemd
+        Tag             kernel.*
+        Systemd_Filter  _TRANSPORT=kernel
+        Read_From_Tail  On
 
-    [FILTER]
-        Name    record_modifier
-        Match   systemd.kubelet
-        Record  source kubelet
+    [INPUT]
+        Name            systemd
+        Tag             kubelet.*
+        Systemd_Filter  _SYSTEMD_UNIT=kubelet.service
+        Read_From_Tail  On
 
-    [FILTER]
-        Name    record_modifier
-        Match   systemd.containerd
-        Record  source containerd
-
-    [FILTER]
-        Name    record_modifier
-        Match   dmesg.*
-        Record  source dmesg
-
-    [FILTER]
-        Name    lua
-        Match   kube.*
-        script  event.lua
-        call    set_source
- 
-    [OUTPUT]
-        Name              http
-        Match             *
-        Host              teapot-logd-server.storage
-        Port              80
-        URI               /logs
-        Format            json
-        json_date_key     timestamp
-        json_date_format  iso8601
-        Retry_Limit       5
+    [INPUT]
+        Name            systemd
+        Tag             containerd.*
+        Systemd_Filter  _SYSTEMD_UNIT=containerd.service
+        Read_From_Tail  On
 
     [OUTPUT]
-        Name              loki
-        Match             *
-        Host              loki-server.storage
-        Port              3100
-
-        Line_Format json
-
-    [OUTPUT]
-        Name            prometheus_exporter
-        Match           internal_metrics
-        Host            0.0.0.0
-        Port            2021
- 
-  parsers.conf: |
-    # Standard Docker / CRI parsers are built-in; define extras here if needed.
-    [PARSER]
-        Name        json
-        Format      json
-        Time_Key    time
-        Time_Format %Y-%m-%dT%H:%M:%S.%LZ
-
-  event.lua: |
-    function set_source(tag, timestamp, record)
-        local app = ""
-        if record["data"] and record["data"]["kube_labels"] and record["data"]["kube_labels"]["app"] then
-            app = record["data"]["kube_labels"]["app"]
-        else
-            app = "unknown"
-        end
-        record["source"] = "app:" .. app
-
-        record["timestamp"] = record["data"]["timestamp"]
-        record["data"]["timestamp"] = nil
-
-        return 1, timestamp, record
-    end
+        Name          loki
+        Match         *
+        Host          loki-server.storage
+        Port          3100
+        Label_keys    $hostname
+        Auto_Kubernetes_Labels On
