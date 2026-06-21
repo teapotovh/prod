@@ -6,8 +6,19 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   template:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels: {}
+            topologyKey: kubernetes.io/hostname
       initContainers:
       - name: configure
         image: mirror.gcr.io/dibi/envsubst
