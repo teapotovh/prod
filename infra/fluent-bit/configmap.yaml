@@ -50,8 +50,28 @@ data:
 
     [OUTPUT]
         Name          loki
-        Match         *
+        Match         kube.*
         Host          loki-server.storage
         Port          3100
-        Label_keys    $hostname
-        Auto_Kubernetes_Labels On
+        Labels        job=kubernetes,namespace=$kubernetes['namespace_name'],pod=$kubernetes['pod_name'],container=$kubernetes['container_name'],app=$kubernetes['labels']['app']
+
+    [OUTPUT]
+        Name          loki
+        Match         kubelet.*
+        Host          loki-server.storage
+        Port          3100
+        Labels        job=kubelet
+
+    [OUTPUT]
+        Name          loki
+        Match         containerd.*
+        Host          loki-server.storage
+        Port          3100
+        Labels        job=containerd
+
+    [OUTPUT]
+        Name          loki
+        Match         kernel.*
+        Host          loki-server.storage
+        Port          3100
+        Labels        job=kernel
