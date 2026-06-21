@@ -11,17 +11,6 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "2021"
     spec:
-      affinity:
-        # TODO: remove when kube02 fluent-bit issue is solved?
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: NotIn
-                    values:
-                      - kube02.prod.infra.teapot.ovh
-
       serviceAccountName: serviceaccount
       hostNetwork: false
       dnsPolicy: ClusterFirst
