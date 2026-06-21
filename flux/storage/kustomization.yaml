@@ -7,5 +7,4 @@ resources:
 - garage01.yaml
 - bottin.yaml
 - prometheus.yaml
-- logd.yaml
 - loki.yaml
