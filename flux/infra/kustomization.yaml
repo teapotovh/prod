@@ -1,6 +1,7 @@
 namespace: flux
 
 resources:
+- loadbalancerd.yaml
 - gateway-api.yaml
 - envoy-gateway.yaml
 - sealed-secrets.yaml
