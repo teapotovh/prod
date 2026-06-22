@@ -39,7 +39,7 @@ spec:
             runAsGroup: 65532
             runAsNonRoot: true
             runAsUser: 65532
-          image: ghcr.io/teapotovh/external-dns:v0.0.24
+          image: ghcr.io/teapotovh/external-dns:v0.0.25
           imagePullPolicy: IfNotPresent
           args:
             - --log-format=json
@@ -142,7 +142,7 @@ spec:
             runAsGroup: 65532
             runAsNonRoot: true
             runAsUser: 65532
-          image: ghcr.io/teapotovh/external-dns:v0.0.24
+          image: ghcr.io/teapotovh/external-dns:v0.0.25
           imagePullPolicy: IfNotPresent
           args:
             - --log-format=json
