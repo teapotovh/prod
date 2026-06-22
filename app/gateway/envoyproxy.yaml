@@ -10,8 +10,7 @@ spec:
         container:
           image: mirror.gcr.io/envoyproxy/envoy:distroless-v1.38.0
       envoyService:
-        type: NodePort
-        externalTrafficPolicy: Local
+        type: LoadBalancer
         patch:
           type: StrategicMerge
           value:
