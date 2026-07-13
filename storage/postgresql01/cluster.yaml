@@ -76,3 +76,13 @@ spec:
           - pg_signal_backend
         passwordSecret:
           name: postgresql01-user-radicale
+      - name: calendar
+        ensure: present
+        comment: Access user for the calendar db
+        login: true
+        superuser: false
+        inRoles:
+          - pg_monitor
+          - pg_signal_backend
+        passwordSecret:
+          name: postgresql01-user-calendar
