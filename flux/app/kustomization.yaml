@@ -10,3 +10,4 @@ resources:
   - vaultwarden.yaml
   - radicale.yaml
   - kontakte.yaml
+  - calendar.yaml
