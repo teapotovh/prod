@@ -23,7 +23,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: calendar
-          image: ghcr.io/teapotovh/calendard:v0.0.19
+          image: ghcr.io/teapotovh/calendard:v0.0.20
           ports:
             - name: http
               protocol: TCP
@@ -62,6 +62,16 @@ spec:
                 secretKeyRef:
                   name: postgresql01-user-calendar
                   key: password
+            - name: S3_ID
+              valueFrom:
+                secretKeyRef:
+                  name: garage01-key-calendar
+                  key: id
+            - name: S3_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: garage01-key-calendar
+                  key: key
           resources:
             requests:
               cpu: 50m
