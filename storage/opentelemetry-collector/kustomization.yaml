@@ -13,3 +13,4 @@ labels:
 resources:
 - configmap.yaml
 - daemonset.yaml
+- service.yaml

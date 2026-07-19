@@ -33,6 +33,7 @@ spec:
               containerPort: 8146
           args:
             - --log-format=json
+            - --observability-tracing-endpoint=$(HOST_IP):4317
             - --ldap-url=ldap://bottin-server.storage:389
             - --ldap-root-dn=$(LDAP_BIND_DN)
             - --ldap-root-passwd=$(LDAP_BIND_PASSWORD)
@@ -42,6 +43,10 @@ spec:
             - --s3cache-bucket=calendar
             - --s3cache-path=/s3cache
           env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: LDAP_BIND_DN
               valueFrom:
                 secretKeyRef:
