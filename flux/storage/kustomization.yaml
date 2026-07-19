@@ -8,3 +8,5 @@ resources:
 - bottin.yaml
 - prometheus.yaml
 - loki.yaml
+- tempo.yaml
+- opentelemetry-collector.yaml
