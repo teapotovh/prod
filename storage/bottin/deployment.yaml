@@ -33,6 +33,7 @@ spec:
               containerPort: 8146
           args:
             - --log-format=json
+            - --observability-tracing-endpoint=$(HOST_IP):4317
             - --ldapsrv-port=389
             - --bottin-passwd=$(ROOT_PASSWORD)
             - --bottin-store-type=psql
@@ -52,6 +53,10 @@ spec:
               cpu: 200m
               memory: 256Mi
           env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:

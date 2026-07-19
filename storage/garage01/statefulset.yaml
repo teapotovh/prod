@@ -7,6 +7,10 @@ spec:
   serviceName: garage
   podManagementPolicy: OrderedReady
   template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3903"
     spec:
       affinity:
         podAntiAffinity:
@@ -29,7 +33,8 @@ spec:
             app: garage
             app.kubernetes.io/instance: garage01
       initContainers:
-        # Copies garage.toml from configmap to temporary etc volume and replaces RPC secret placeholder
+        # Copies garage.toml from configmap to temporary etc volume and 
+        # replaces RPC secret placeholder
         - name: garage-init
           image: mirror.gcr.io/dibi/envsubst
           command:
@@ -37,6 +42,10 @@ spec:
             - -c
             - envsubst < /mnt/garage.toml > /mnt/etc/garage.toml
           env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: RPC_SECRET
               valueFrom:
                 secretKeyRef:
@@ -55,7 +64,7 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-          image: mirror.gcr.io/dxflrs/amd64_garage:v2.2.0
+          image: mirror.gcr.io/dxflrs/amd64_garage:v2.3.0
           ports:
             - containerPort: 3900
               name: s3
