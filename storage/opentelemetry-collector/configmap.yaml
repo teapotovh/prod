@@ -18,7 +18,7 @@ data:
 
     exporters:
       otlp:
-        endpoint: tempo-server
+        endpoint: tempo-server:4317
         tls:
           insecure: true
 
