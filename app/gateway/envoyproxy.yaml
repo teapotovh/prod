@@ -5,11 +5,14 @@ metadata:
 spec:
   telemetry:
     tracing:
-      samplingRate: 10.0
+      samplingFraction:
+        numerator: 1
+        denominator: 100
       provider:
         type: OpenTelemetry
         backendRefs:
-          - name: opentelemetry-collector-server.storage
+          - name: opentelemetry-collector-server
+            namespace: storage
             port: 4317
   provider:
     type: Kubernetes
