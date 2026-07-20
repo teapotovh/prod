@@ -38,4 +38,4 @@ data:
 
     [admin]
     api_bind_addr = "[::]:3903"
-    trace_sink = "${HOST_IP}:4317"
+    trace_sink = "http://${HOST_IP}:4317"
