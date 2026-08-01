@@ -82,7 +82,9 @@ spec:
               cpu: 50m
               memory: 128Mi
             limits:
-              cpu: 100m
+              # This gets much more CPU to avoid throttling expensive requests
+              # that decode a lot of dictionaries
+              cpu: 2000m
               memory: 256Mi
           livenessProbe:
             failureThreshold: 2
