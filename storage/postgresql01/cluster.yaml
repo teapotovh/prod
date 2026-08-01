@@ -4,6 +4,9 @@ metadata:
   name: cluster
 spec:
   instances: 3
+  postgresql:
+    parameters:
+      max_connections: "500"
   storage:
     pvcTemplate:
       accessModes:
