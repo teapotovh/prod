@@ -24,7 +24,7 @@ spec:
         node-role.kubernetes.io/control-plane: ""
       containers:
         - name: loadbalancerd
-          image: ghcr.io/teapotovh/loadbalancerd:v0.0.18
+          image: ghcr.io/teapotovh/loadbalancerd:v0.0.0-20260801130610-0fd15491c727
           ports:
             - name: observability
               protocol: TCP
