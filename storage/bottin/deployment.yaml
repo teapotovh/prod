@@ -41,6 +41,7 @@ spec:
             - "--bottin-acl=ANONYMOUS::bind:*,ou=users,dc=teapot,dc=ovh:"
             - "--bottin-acl=dc=teapot,dc=ovh::bind:*,ou=users,dc=teapot,dc=ovh:"
             - "--bottin-acl=ANONYMOUS::bind:dc=teapot,dc=ovh:"
+            - "--bottin-acl=ANONYMOUS::read:dc=teapot,dc=ovh:"
             - "--bottin-acl=*,dc=teapot,dc=ovh::read:*:* !userpassword"
             - "--bottin-acl=*::read modify:SELF:*"
             - "--bottin-acl=dc=teapot,dc=ovh::read add modify delete:*:*"
