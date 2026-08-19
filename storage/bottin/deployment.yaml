@@ -23,7 +23,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
         - name: bottin
-          image: ghcr.io/teapotovh/bottind:v0.0.0-20260802073707-c3563af5bc7c
+          image: ghcr.io/teapotovh/bottind:v0.0.0-20260819061343-ed0ac9085916
           ports:
             - name: ldap
               protocol: TCP
