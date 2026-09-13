@@ -6,6 +6,9 @@ spec:
   replicas: 3
   serviceName: garage
   podManagementPolicy: Parallel
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
   template:
     metadata:
       annotations:
