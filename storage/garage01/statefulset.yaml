@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 3
   serviceName: garage
-  podManagementPolicy: OrderedReady
+  podManagementPolicy: Parallel
   template:
     metadata:
       annotations:
