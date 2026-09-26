@@ -1,15 +1,20 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: server
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
-    # metadata:
-    #   annotations:
-    #     prometheus.io/scrape: "true"
-    #     prometheus.io/port: "8888"
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8888"
     spec:
       containers:
         - name: prometheus
@@ -21,16 +26,15 @@ spec:
               containerPort: 8888
             - name: grpc
               containerPort: 4317
-              hostPort: 4317
           volumeMounts:
             - name: config
               mountPath: /etc/otel/
           resources:
             requests:
-              memory: 128Mi
+              memory: 256Mi
               cpu: 100m
             limits:
-              memory: 256Mi
+              memory: 300Mi
               cpu: 200m
       volumes:
         - name: config

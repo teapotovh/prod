@@ -45,10 +45,6 @@ spec:
             - -c
             - envsubst < /mnt/garage.toml > /mnt/etc/garage.toml
           env:
-            - name: HOST_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
             - name: RPC_SECRET
               valueFrom:
                 secretKeyRef:

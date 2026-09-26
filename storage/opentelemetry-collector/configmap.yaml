@@ -15,6 +15,30 @@ data:
       memory_limiter:
         check_interval: 5s
         limit_mib: 50
+      tail_sampling:
+        decision_wait: 10s
+        num_traces: 200000
+        policies:
+          - name: errors
+            type: status_code
+            status_code:
+              status_codes: [ERROR]
+
+          - name: slow-traces
+            type: latency
+            latency:
+              threshold_ms: 150
+
+          - name: force-sample-attr
+            type: string_attribute
+            string_attribute:
+              key: sample
+              values: ["true"]
+
+          - name: baseline-probabilistic
+            type: probabilistic
+            probabilistic:
+              sampling_percentage: 10
 
     exporters:
       otlp:
@@ -26,5 +50,5 @@ data:
       pipelines:
         traces:
           receivers: [otlp]
-          processors: [memory_limiter, batch]
+          processors: [tail_sampling, memory_limiter, batch]
           exporters: [otlp]
