@@ -14,7 +14,7 @@ data:
       batch: {}
       memory_limiter:
         check_interval: 5s
-        limit_mib: 50
+        limit_mib: 200
       tail_sampling:
         decision_wait: 10s
         num_traces: 200000
