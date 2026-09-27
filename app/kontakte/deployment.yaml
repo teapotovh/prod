@@ -23,7 +23,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: kontakte
-          image: ghcr.io/teapotovh/kontakted:v0.0.0-20260926115214-347c3af6721b
+          image: ghcr.io/teapotovh/kontakted:v0.0.0-20260927084640-5a0edba4ba01
           args:
             - --log-format=json
             - --ldap-url=ldap://bottin-server.storage:389
