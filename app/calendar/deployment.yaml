@@ -23,7 +23,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: calendar
-          image: ghcr.io/teapotovh/calendard:v0.0.0-20260927150151-a0dd18f0c37d
+          image: ghcr.io/teapotovh/calendard:v0.0.0-20261002072332-9b55a7d4c079
           ports:
             - name: http
               protocol: TCP
