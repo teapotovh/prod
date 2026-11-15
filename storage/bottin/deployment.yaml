@@ -23,7 +23,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
         - name: bottin
-          image: ghcr.io/teapotovh/bottind:v0.0.0-20261114144935-17f16b04d012
+          image: ghcr.io/teapotovh/bottind:v0.0.0-20261115211552-f7c46f2fca93
           ports:
             - name: ldap
               protocol: TCP
@@ -46,6 +46,7 @@ spec:
             - "--bottin-acl=*::read modify:SELF:*"
             - "--bottin-acl=dc=teapot,dc=ovh::read add modify delete:*:*"
             - "--bottin-acl=*:cn=admin,ou=groups,dc=teapot,dc=ovh:read add modify delete:*:*"
+            - "--bottin-acl=*::read::*"
           resources:
             requests:
               cpu: 50m
