@@ -7,6 +7,8 @@ spec:
   postgresql:
     parameters:
       max_connections: "500"
+      wal_sender_timeout: "60s"
+      wal_receiver_timeout: "60s"
   storage:
     pvcTemplate:
       accessModes:
